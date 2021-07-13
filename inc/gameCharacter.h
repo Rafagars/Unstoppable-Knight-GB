@@ -18,4 +18,6 @@ extern GameCharacter coins[3];
 
 extern GameCharacter arrow;
 
+extern GameCharacter obstacles[2];
+
 #endif

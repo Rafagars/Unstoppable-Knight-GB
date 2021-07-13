@@ -18,6 +18,8 @@ extern UINT8 lives;
 
 extern UINT8 frame;
 
+extern uint16_t seed;
+
 extern unsigned char windowmap[];
 
 extern void interruptLCD();
@@ -34,9 +36,8 @@ extern void setupCoins();
 extern void positionCoins();
 extern void setupArrow();
 extern void positionArrow();
-extern void setupEnemies();
-extern void moveEnemies();
-extern void positionEnemies();
+extern void setupObstacles();
+extern void positionObstacles();
 
 extern void joyHandler();
 

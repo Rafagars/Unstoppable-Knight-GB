@@ -17,10 +17,11 @@ void main(){
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 128);
-    set_sprite_data(0, 15, knight_sprites);
+    set_sprite_data(0, 19, knight_sprites);
     setupPlayer();
     setupCoins();
     setupArrow();
+    setupObstacles();
     init();
 
     while(1){
@@ -36,6 +37,7 @@ void main(){
         playerAnimation();
         moveCharacter(&player, player.x, player.y);
         positionArrow();
+        positionObstacles();
         if (frame > 2){
             frame = 0;
         }
