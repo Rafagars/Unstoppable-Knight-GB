@@ -17,7 +17,7 @@ void main(){
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 128);
-    set_sprite_data(0, 19, knight_sprites);
+    set_sprite_data(0, 31, knight_sprites);
     setupPlayer();
     setupCoins();
     setupArrow();

@@ -86,6 +86,11 @@ void playerAnimation(){
     set_sprite_tile(1, 1 + n);
     set_sprite_tile(3, 3 + n);
 
+    set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
+    set_sprite_tile(obstacles[1].spriteID[2], 20 + n);
+    set_sprite_tile(obstacles[1].spriteID[1], 21 + n);
+    set_sprite_tile(obstacles[1].spriteID[3], 22 + n);
+
     frame++;
     performDelay(4);
 }
@@ -153,7 +158,8 @@ void positionArrow(){
 }
 
 void setupObstacles(){
-    for(i = 0; i < 1; i++){
+    spriteID += 1;
+    for(i = 0; i < 2; i++){
         obstacles[i].x = 16*randomize(4) + 64;
         obstacles[i].y = player.y + 120;
         obstacles[i].w = 16;
@@ -161,7 +167,6 @@ void setupObstacles(){
         obstacles[i].health = 1;
 
         UINT8 n = (4*i + i);
-        spriteID += 1;
         //load obstacles's sprites
         set_sprite_tile(spriteID + n, 15 + n);
         obstacles[i].spriteID[0] = spriteID + n;
@@ -177,7 +182,7 @@ void setupObstacles(){
 }
 
 void positionObstacles(){
-    for(i = 0; i < 1; i++){
+    for(i = 0; i < 2; i++){
         if(obstacles[i].health > 0){
             obstacles[i].y -= 4;
             if(obstacles[i]. y < 8){
