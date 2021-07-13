@@ -1,1 +1,1 @@
-/opt/gbdk/bin/lcc -o knight.gb main.c src/functions.c src/knight_sprites.c src/knight_tiles.c src/gameCharacter.c src/ForestBG.c
+/opt/gbdk/bin/lcc -o knight.gb main.c src/functions.c src/knight_sprites.c src/knight_tiles.c src/gameCharacter.c src/ForestBG.c src/GameOverBackground.c

@@ -1,14 +1,16 @@
 #include "../inc/functions.h"
 
+BOOLEAN game_on = TRUE;
+
 UINT8 i;
 UINT8 spritesize = 8;
-UINT8 swap;
-
+UINT8 swap = 0;
 UINT8 frame;
 UINT8 spriteID;
 
 UINT16 score = 0;
 UINT8 lives = 3;
+BOOLEAN hit = FALSE;
 
 uint16_t seed;
 
@@ -86,10 +88,19 @@ void playerAnimation(){
     set_sprite_tile(1, 1 + n);
     set_sprite_tile(3, 3 + n);
 
+    //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
     set_sprite_tile(obstacles[1].spriteID[2], 20 + n);
     set_sprite_tile(obstacles[1].spriteID[1], 21 + n);
     set_sprite_tile(obstacles[1].spriteID[3], 22 + n);
+
+    if(hit == TRUE){
+        //Hit effect
+        set_sprite_tile(0, 32);
+        set_sprite_tile(2, 32);
+        set_sprite_tile(1, 32);
+        set_sprite_tile(3, 32);
+    }
 
     frame++;
     performDelay(4);
@@ -116,7 +127,10 @@ void positionCoins(){
     for(i = 0; i < 3; i++){
         if(coins[i].health > 0){
             coins[i].y -= 4;
-            if(checkCollision(&player, &coins[i]) == TRUE || coins[i].y < 8){
+            if(checkCollision(&player, &coins[i]) == TRUE ){
+                coins[i].health = 0;
+                updateCoinsCounter();
+            } else if(coins[i].y < 8){
                 coins[i].health = 0;
             }
         } else {
@@ -146,7 +160,11 @@ void setupArrow(){
 void positionArrow(){
     if(arrow.health > 0){
         arrow.y -= 8;
-        if(checkCollision(&player, &arrow) == TRUE || arrow.y < 8){
+        if(checkCollision(&player, &arrow) == TRUE && hit == FALSE){
+            arrow.health = 0;
+            player.health--;
+            hit = TRUE;
+        } else if(arrow.y < 8){
             arrow.health = 0;
         }
     } else {
@@ -187,6 +205,9 @@ void positionObstacles(){
             obstacles[i].y -= 4;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
+            }else if(checkCollision(&player, &obstacles[i]) == TRUE && hit == FALSE){
+                player.health--;
+                hit = TRUE;
             }
         } else {
             obstacles[i].x = 16*randomize(4) + 64;
@@ -210,6 +231,12 @@ void joyHandler(){
         break;
     case J_RIGHT:
         player.x += 16;
+        break;
+    case J_START:
+    //Pause game
+        game_on = FALSE;
+        performDelay(10);
+        break;
     default:
         player.x += 0;
         break;
@@ -263,9 +290,67 @@ void resetBackground(){
     HIDE_SPRITES;
 }
 
+void updateCoinsCounter(){
+    if(windowmap[14] == 0x0A){
+        swap = (UINT8) windowmap[13] + 1;
+        windowmap[13] = (char) swap;
+        windowmap[14] = 0x01;
+    } else if(windowmap[13] == 0x0A){
+        windowmap[13] = 0x01;
+        if(player.health < 3){
+            player.health++;
+        }
+    } else {
+        swap = (UINT8) windowmap[14] + 1;
+        windowmap[14] = (char) swap;
+    }
+    set_win_tiles(0, 0, 20, 1, windowmap);
+}
+
+void updateHealth(){
+    switch (player.health)
+    {
+    case 3:
+        windowmap[16] = 0x31;
+        windowmap[17] = 0x31;
+        windowmap[18] = 0x31;
+        break;
+    case 2:
+        windowmap[16] = 0x00;
+        break;
+    case 1:
+        windowmap[17] = 0x00;
+        break;
+    case 0:
+        windowmap[18] = 0x00;
+        gameOverScreen();
+        break;
+    default:
+        windowmap[16] = 0x31;
+        break;
+    }
+    set_win_tiles(0, 0, 20, 1, windowmap);
+}
+
 ////Creates a random number between 0 - n
 UINT8 randomize(UINT8 n){
     seed = DIV_REG;
     initrand(seed);
     return rand() % n;
+}
+
+void gameOverScreen(){
+    resetBackground();
+    HIDE_WIN;
+    //fadeIn();
+    set_bkg_data(37, 13, Knight_tiles);
+    set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
+    game_on = FALSE;
+    player.health = 3;
+    windowmap[13] = 0x01;
+    windowmap[14] = 0x01;
+    setupPlayer();
+    setupCoins();
+    setupArrow();
+    setupObstacles();
 }
