@@ -53,6 +53,7 @@ extern void fadeIn();
 extern void resetBackground();
 extern void updateCoinsCounter();
 extern void updateHealth();
+extern void updateScore();
 extern UINT8 randomize(UINT8 n);
 extern void gameOverScreen();
 

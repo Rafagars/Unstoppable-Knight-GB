@@ -130,6 +130,7 @@ void positionCoins(){
             if(checkCollision(&player, &coins[i]) == TRUE ){
                 coins[i].health = 0;
                 updateCoinsCounter();
+                updateScore();
             } else if(coins[i].y < 8){
                 coins[i].health = 0;
             }
@@ -304,7 +305,6 @@ void updateCoinsCounter(){
         swap = (UINT8) windowmap[14] + 1;
         windowmap[14] = (char) swap;
     }
-    set_win_tiles(0, 0, 20, 1, windowmap);
 }
 
 void updateHealth(){
@@ -329,7 +329,21 @@ void updateHealth(){
         windowmap[16] = 0x31;
         break;
     }
-    set_win_tiles(0, 0, 20, 1, windowmap);
+}
+
+void updateScore(){
+    if(windowmap[8] == 0x0A){
+        windowmap[8] = 0x01;
+        swap = (UINT8) windowmap[7] + 1;
+        windowmap[7] = (char) swap;
+    } else if(windowmap[7] == 0x0A){
+        windowmap[7] = 0x01;
+        swap = (UINT8) windowmap[6] + 1;
+        windowmap[6] = (char) swap;
+    }else{
+        swap = (UINT8) windowmap[8] + 1;
+        windowmap[8] = (char) swap;
+    }
 }
 
 ////Creates a random number between 0 - n
@@ -347,6 +361,9 @@ void gameOverScreen(){
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
     game_on = FALSE;
     player.health = 3;
+    windowmap[6] = 0x01;
+    windowmap[7] = 0x01;
+    windowmap[8] = 0x01;
     windowmap[13] = 0x01;
     windowmap[14] = 0x01;
     setupPlayer();
