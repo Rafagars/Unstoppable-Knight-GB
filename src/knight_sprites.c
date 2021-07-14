@@ -12,9 +12,9 @@
   Tile size            : 8 x 8
   Tiles                : 0 to 30
 
-  Palette colors       : None.
+  Palette colors       : Included.
   SGB Palette          : None.
-  CGB Palette          : None.
+  CGB Palette          : 1 Byte per entry.
 
   Convert to metatiles : No.
 
@@ -22,6 +22,14 @@
 
 */
 
+/* CGBpalette entries. */
+const unsigned char knight_spritesCGB[] =
+{
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x01,0x02,0x03,0x00,
+  0x00,0x00,0x00,0x04,0x04,0x04,0x04,0x04,
+  0x04,0x04,0x04,0x04,0x04,0x04,0x04
+};
 /* Start of tile array. */
 const unsigned char knight_sprites[] =
 {

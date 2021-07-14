@@ -2,6 +2,38 @@
 
 BOOLEAN game_on = TRUE;
 
+const UWORD spritePalette[] = {
+    /* Gameboy Color palette 0 */
+    knight_spritesCGBPal0c0,
+    knight_spritesCGBPal0c1,
+    knight_spritesCGBPal0c2,
+    knight_spritesCGBPal0c3,
+
+    /* Gameboy Color palette 1 */
+    knight_spritesCGBPal1c0,
+    knight_spritesCGBPal1c1,
+    knight_spritesCGBPal1c2,
+    knight_spritesCGBPal1c3,
+
+    /* Gameboy Color palette 2 */
+    knight_spritesCGBPal2c0,
+    knight_spritesCGBPal2c1,
+    knight_spritesCGBPal2c2,
+    knight_spritesCGBPal2c3,
+
+    /* Gameboy Color palette 3 */
+    knight_spritesCGBPal3c0,
+    knight_spritesCGBPal3c1,
+    knight_spritesCGBPal3c2,
+    knight_spritesCGBPal3c3,
+
+    /* Gameboy Color palette 4 */
+    knight_spritesCGBPal4c0,
+    knight_spritesCGBPal4c1,
+    knight_spritesCGBPal4c2,
+    knight_spritesCGBPal4c3,
+};
+
 UINT8 i;
 UINT8 spritesize = 8;
 UINT8 swap = 0;
@@ -70,12 +102,16 @@ void setupPlayer(){
 
     //load player's sprites
     set_sprite_tile(0, 0);
+    set_sprite_prop(0, 0);
     player.spriteID[0] = 0;
-    set_sprite_tile(2, 2);
+    set_sprite_tile(2, 0);
+    set_sprite_prop(2, 2);
     player.spriteID[1] = 2;
     set_sprite_tile(1, 1);
+    set_sprite_prop(1, 0);
     player.spriteID[2] = 1;
     set_sprite_tile(3, 3);
+    set_sprite_prop(3, 0);
     player.spriteID[3] = 3;
 
     moveCharacter(&player, player.x, player.y);
