@@ -54,6 +54,8 @@ extern void resetBackground();
 extern void updateCoinsCounter();
 extern void updateHealth();
 extern void updateScore();
+extern void hitSound();
+extern void coinSound();
 extern UINT8 randomize(UINT8 n);
 extern void gameOverScreen();
 

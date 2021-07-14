@@ -23,9 +23,9 @@ void interruptLCD(){
 }
 
 void turnOnSound(){
-    NR52_REG = 0x8F; //Turn on the sound
-    NR51_REG = 0x11; //Enable the sound channel
+    NR52_REG = 0x80; //Turn on the sound
     NR50_REG = 0x77; //Increase the volume to its max
+    NR51_REG = 0xFF; //Select which chanels we want to use in this case all of them. One bit for the L one bit for the R of all four channels
 }
 
 void turnOffSound(){
@@ -129,6 +129,7 @@ void positionCoins(){
             coins[i].y -= 4;
             if(checkCollision(&player, &coins[i]) == TRUE ){
                 coins[i].health = 0;
+                coinSound();
                 updateCoinsCounter();
                 updateScore();
             } else if(coins[i].y < 8){
@@ -165,6 +166,7 @@ void positionArrow(){
             arrow.health = 0;
             player.health--;
             hit = TRUE;
+            hitSound();
         } else if(arrow.y < 8){
             arrow.health = 0;
         }
@@ -209,6 +211,7 @@ void positionObstacles(){
             }else if(checkCollision(&player, &obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
+                hitSound();
             }
         } else {
             obstacles[i].x = 16*randomize(4) + 64;
@@ -344,6 +347,22 @@ void updateScore(){
         swap = (UINT8) windowmap[8] + 1;
         windowmap[8] = (char) swap;
     }
+}
+
+void hitSound(){
+    NR10_REG = 0x13;
+    NR11_REG = 0x42;
+    NR12_REG = 0x74;
+    NR13_REG = 0x00;
+    NR14_REG = 0xC3;
+}
+
+void coinSound(){
+    NR10_REG = 0x14;
+    NR11_REG = 0x43;
+    NR12_REG = 0x73;
+    NR13_REG = 0x01;
+    NR14_REG = 0xC3;
 }
 
 ////Creates a random number between 0 - n
