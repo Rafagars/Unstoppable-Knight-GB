@@ -39,7 +39,7 @@ void main(){
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 128);
     set_sprite_data(0, 32, knight_sprites);
-    set_sprite_palette(0, 5, &spritePalette[0]);
+    //set_sprite_palette(0, 5, &spritePalette[0]);
     setupPlayer();
     setupCoins();
     setupArrow();
