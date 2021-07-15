@@ -2,6 +2,64 @@
 
 BOOLEAN game_on = TRUE;
 
+const UWORD spritePalette[] = {
+    /* Gameboy Color palette 0 */
+    knight_spritesCGBPal0c0,
+    knight_spritesCGBPal0c1,
+    knight_spritesCGBPal0c2,
+    knight_spritesCGBPal0c3,
+
+    /* Gameboy Color palette 1 */
+    knight_spritesCGBPal1c0,
+    knight_spritesCGBPal1c1,
+    knight_spritesCGBPal1c2,
+    knight_spritesCGBPal1c3,
+
+    /* Gameboy Color palette 2 */
+    knight_spritesCGBPal2c0,
+    knight_spritesCGBPal2c1,
+    knight_spritesCGBPal2c2,
+    knight_spritesCGBPal2c3,
+
+    /* Gameboy Color palette 3 */
+    knight_spritesCGBPal3c0,
+    knight_spritesCGBPal3c1,
+    knight_spritesCGBPal3c2,
+    knight_spritesCGBPal3c3,
+
+    /* Gameboy Color palette 4 */
+    knight_spritesCGBPal4c0,
+    knight_spritesCGBPal4c1,
+    knight_spritesCGBPal4c2,
+    knight_spritesCGBPal4c3,
+};
+
+const UWORD backgroundPalette[] = {
+    /* Gameboy Color palette 0 */
+    Knight_tilesCGBPal0c0,
+    Knight_tilesCGBPal0c1,
+    Knight_tilesCGBPal0c2,
+    Knight_tilesCGBPal0c3,
+
+    /* Gameboy Color palette 1 */
+    Knight_tilesCGBPal1c0,
+    Knight_tilesCGBPal1c1,
+    Knight_tilesCGBPal1c2,
+    Knight_tilesCGBPal1c3,
+
+    /* Gameboy Color palette 2 */
+    Knight_tilesCGBPal2c0,
+    Knight_tilesCGBPal2c1,
+    Knight_tilesCGBPal2c2,
+    Knight_tilesCGBPal2c3,
+
+    /* Gameboy Color palette 3 */
+    Knight_tilesCGBPal3c0,
+    Knight_tilesCGBPal3c1,
+    Knight_tilesCGBPal3c2,
+    Knight_tilesCGBPal3c3,
+};
+
 UINT8 i;
 UINT8 spritesize = 8;
 UINT8 swap = 0;
@@ -123,6 +181,7 @@ void setupCoins(){
         spriteID = 4 + i;
         //load coin's sprite
         set_sprite_tile(spriteID, 12);
+        set_sprite_prop(spriteID, 1);
         coins[i].spriteID[0] = spriteID;
 
         move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
@@ -160,6 +219,7 @@ void setupArrow(){
 
     spriteID += 1;
     set_sprite_tile(spriteID, 14);
+    set_sprite_prop(spriteID, 3);
     arrow.spriteID[0] = spriteID;
 
     move_sprite(arrow.spriteID[0], arrow.x, arrow.y);
@@ -196,12 +256,16 @@ void setupObstacles(){
         UINT8 n = (4*i + i);
         //load obstacles's sprites
         set_sprite_tile(spriteID + n, 15 + n);
+        set_sprite_prop(spriteID + n, 3 + i);
         obstacles[i].spriteID[0] = spriteID + n;
         set_sprite_tile(spriteID + n + 1 , 16 + n);
+        set_sprite_prop(spriteID + n + 1, 3 + i);
         obstacles[i].spriteID[2] = spriteID + n + 1;
         set_sprite_tile(spriteID + n + 2, 17 + n);
+        set_sprite_prop(spriteID + n + 2, 3 + i);
         obstacles[i].spriteID[1] = spriteID + n + 2;
         set_sprite_tile(spriteID + n + 3, 18 + n);
+        set_sprite_prop(spriteID + n + 3, 3 + i);
         obstacles[i].spriteID[3] = spriteID + n + 3;
 
         moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y); 
@@ -231,7 +295,17 @@ void positionObstacles(){
 
 void setupBackground(){
     set_bkg_data(37, 13, Knight_tiles);
-    set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBG);
+
+    // switch to 2nd video memory bank
+    VBK_REG = 1;
+
+    // Set background color palette map
+    set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN1);
+    
+    // switch to 1st video memory bank
+    VBK_REG = 0;
+
+    set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN0);
 }
 
 void joyHandler(){

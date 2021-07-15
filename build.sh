@@ -5,7 +5,7 @@
 /opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j -c -o src/GameOverBackground.o src/GameOverBackground.c
 /opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j -c -o src/functions.o src/functions.c 
 /opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j -c -o main.o main.c
-/opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j -o knight.gb src/knight_sprites.o main.o src/functions.o src/knight_tiles.o src/gameCharacter.o src/ForestBG.o src/GameOverBackground.o
+/opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j -Wm-yc -o knight.gb src/knight_sprites.o main.o src/functions.o src/knight_tiles.o src/gameCharacter.o src/ForestBG.o src/GameOverBackground.o
 
 rm *.o *.lst *.asm *.sym
 

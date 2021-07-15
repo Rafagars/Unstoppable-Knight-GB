@@ -14,6 +14,7 @@
 extern BOOLEAN game_on;
 
 extern const UWORD spritePalette[];
+extern const UWORD backgroundPalette[];
 
 extern UINT8 i;
 extern UINT8 spritesize;
