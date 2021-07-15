@@ -66,7 +66,6 @@ void main(){
             set_win_tiles(0, 0, 20, 1, windowmap);
             if (frame > 2){
                 frame = 0;
-                hit = FALSE;
             }
         } else {
             if(joypad() & J_START){
