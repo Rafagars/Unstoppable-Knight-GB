@@ -83,16 +83,12 @@ void setupPlayer(){
 
 void playerAnimation(){
     UINT8 n = 3*frame + frame;
-    set_sprite_tile(0, 0 + n);
-    set_sprite_tile(2, 2 + n);
-    set_sprite_tile(1, 1 + n);
-    set_sprite_tile(3, 3 + n);
 
     //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
     set_sprite_tile(obstacles[1].spriteID[2], 20 + n);
     set_sprite_tile(obstacles[1].spriteID[1], 21 + n);
-    set_sprite_tile(obstacles[1].spriteID[3], 22 + n);
+    set_sprite_tile(obstacles[1].spriteID[3], 22 + n);   
 
     if(hit == TRUE){
         //Hit effect
@@ -100,10 +96,20 @@ void playerAnimation(){
         set_sprite_tile(2, 32);
         set_sprite_tile(1, 32);
         set_sprite_tile(3, 32);
+        performDelay(2);
+        set_sprite_tile(0, 0 + n);
+        set_sprite_tile(2, 2 + n);
+        set_sprite_tile(1, 1 + n);
+        set_sprite_tile(3, 3 + n);
+        performDelay(2);
+    } else {
+        set_sprite_tile(0, 0 + n);
+        set_sprite_tile(2, 2 + n);
+        set_sprite_tile(1, 1 + n);
+        set_sprite_tile(3, 3 + n);
+        performDelay(4);
     }
-
     frame++;
-    performDelay(4);
 }
 
 void setupCoins(){
@@ -208,6 +214,7 @@ void positionObstacles(){
             obstacles[i].y -= 4;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
+                hit = FALSE;
             }else if(checkCollision(&player, &obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
@@ -350,7 +357,7 @@ void updateScore(){
 }
 
 void hitSound(){
-    NR10_REG = 0x13;
+    NR10_REG = 0x25;
     NR11_REG = 0x42;
     NR12_REG = 0x74;
     NR13_REG = 0x00;
@@ -358,7 +365,7 @@ void hitSound(){
 }
 
 void coinSound(){
-    NR10_REG = 0x14;
+    NR10_REG = 0x32;
     NR11_REG = 0x43;
     NR12_REG = 0x73;
     NR13_REG = 0x01;
@@ -379,6 +386,7 @@ void gameOverScreen(){
     set_bkg_data(37, 13, Knight_tiles);
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
     game_on = FALSE;
+    hit = FALSE;
     player.health = 3;
     windowmap[6] = 0x01;
     windowmap[7] = 0x01;
