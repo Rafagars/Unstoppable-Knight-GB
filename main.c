@@ -38,7 +38,7 @@ void main(){
 
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
-    move_win(7, 128);
+    move_win(7, 136);
     set_sprite_data(0, 32, knight_sprites);
     set_sprite_palette(0, 5, &spritePalette[0]);
     setupPlayer();
@@ -52,10 +52,10 @@ void main(){
         if(game_on == TRUE){
             scroll_bkg(0, 4);
             joyHandler();
-            if(player.x < 40){
-                player.x = 40;
-            } else if(player.x > 120){
-                player.x = 120;
+            if(player.x < 48){
+                player.x = 48;
+            } else if(player.x > 112){
+                player.x = 112;
             }
             positionCoins();
             playerAnimation();
