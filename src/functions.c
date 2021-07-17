@@ -109,7 +109,11 @@ void performDelay(UINT8 numloops){
 }
 
 UBYTE checkCollision(GameCharacter* one, GameCharacter* two){
-    return(one->x - 4 >= two->x && one->x + 4 <= two->x + two->w) && (one->y >= two->y && one->y <= two->y + two->h) || (two->x >= one->x + 4 && two->x <= one->x + one->w - 4) && (two->y >= one->y && two->y <= one->y + one->h);
+    return(one->x >= two->x && one->x <= two->x + two->w) && (one->y >= two->y && one->y <= two->y + two->h) || (two->x >= one->x && two->x <= one->x + one->w) && (two->y >= one->y && two->y <= one->y + one->h);
+}
+
+UBYTE checkPlayerCollision(GameCharacter* character){
+    return(player.x - 4 >= character->x && player.x + 4 <= character->x + character->w) && (player.y - 4 >= character->y && player.y + 4 <= character->y + character->h) || (character->x >= player.x + 4 && character->x <= player.x + player.w - 4) && (character->y >= player.y + 4 && character->y <= player.y + player.h - 4);
 }
 
 void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y){
@@ -204,6 +208,16 @@ void positionCoins(){
             coins[i].x = 16*randomize(5) + 48;
             coins[i].y = player.y + 120;  
             coins[i].health = 1;
+            if(checkCollision(&coins[i], &coins[i+1]) == TRUE){
+                coins[i].x = 16*randomize(5) + 48;
+                coins[i].y = player.y + 120 + 16; 
+            }
+            for(UINT8 j = 0; j < 2; j++){
+                if(checkCollision(&coins[i], &obstacles[j]) == TRUE){
+                    coins[i].x = 16*randomize(5) + 48;
+                    coins[i].y = player.y + 120 + 16;  
+                }
+            }
             //performDelay(2);
         }
         move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
@@ -228,7 +242,7 @@ void setupArrow(){
 void positionArrow(){
     if(arrow.health > 0){
         arrow.y -= 8;
-        if(checkCollision(&player, &arrow) == TRUE && hit == FALSE){
+        if(checkPlayerCollision(&arrow) == TRUE && hit == FALSE){
             arrow.health = 0;
             player.health--;
             hit = TRUE;
@@ -279,7 +293,7 @@ void positionObstacles(){
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
                 hit = FALSE;
-            }else if(checkCollision(&player, &obstacles[i]) == TRUE && hit == FALSE){
+            }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
                 hitSound();
@@ -287,7 +301,10 @@ void positionObstacles(){
         } else {
             obstacles[i].x = 16*randomize(4) + 64;
             obstacles[i].y = player.y + 120;
-            obstacles[i].health = 1; 
+            obstacles[i].health = 1;
+            if(checkCollision(&obstacles[0], &obstacles[1]) == TRUE){
+                obstacles[1].x = 16*randomize(4) + 64;
+            } 
         }
         moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y);
     }
