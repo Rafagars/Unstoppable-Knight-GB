@@ -107,7 +107,12 @@ void performDelay(UINT8 numloops){
 }
 
 UBYTE checkCollision(GameCharacter* one, GameCharacter* two){
-    return(one->x  + 2 >= two->x && one->x + 2 <= two->x + two->w) && (one->y + 2 >= two->y && one->y + 2 <= two->y + two->h) || (two->x >= one->x + 2 && two->x <= one->x + one->w - 2) && (two->y >= one->y + 2 && two->y <= one->y + one->h - 2);
+    return(one->x >= two->x && one->x <= two->x + two->w) && (one->y >= two->y && one->y <= two->y + two->h) || (two->x >= one->x && two->x <= one->x + one->w) && (two->y >= one->y && two->y <= one->y + one->h);
+}
+
+// Give the player a smaller hitbox
+UBYTE checkPlayerCollision(GameCharacter* character){
+    return(player.x  + 2 >= character->x && player.x + 2 <= character->x + character->w) && (player.y + 2 >= character->y && player.y + 2 <= character->y + character->h) || (character->x >= player.x + 2 && character->x <= player.x + player.w - 2) && (character->y >= player.y + 2 && character->y <= player.y + player.h - 2);
 }
 
 void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y){
@@ -202,6 +207,8 @@ void positionCoins(){
             coins[i].x = 16*randomize(5) + 48;
             coins[i].y = player.y + 120;  
             coins[i].health = 1;
+
+            //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
             if(checkCollision(&coins[i], &coins[i+1]) == TRUE){
                 coins[i].x = 16*randomize(5) + 48;
                 coins[i].y = player.y + 120 + 16; 
@@ -209,10 +216,10 @@ void positionCoins(){
             for(UINT8 j = 0; j < 2; j++){
                 if(checkCollision(&coins[i], &obstacles[j]) == TRUE){
                     coins[i].x = 16*randomize(5) + 48;
-                    coins[i].y = player.y + 120 + 16;  
+                    coins[i].y = player.y + 120 + 24;  
                 }
             }
-            //performDelay(2);
+            //
         }
         move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
     }
@@ -236,7 +243,7 @@ void setupArrow(){
 void positionArrow(){
     if(arrow.health > 0){
         arrow.y -= 8;
-        if(checkCollision(&player, &arrow) == TRUE && hit == FALSE){
+        if(checkPlayerCollision(&arrow) == TRUE && hit == FALSE){
             arrow.health = 0;
             player.health--;
             hit = TRUE;
@@ -287,7 +294,7 @@ void positionObstacles(){
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
                 hit = FALSE;
-            }else if(checkCollision(&player, &obstacles[i]) == TRUE && hit == FALSE){
+            }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
                 hitSound();

@@ -34,6 +34,7 @@ extern void init();
 extern void performDelay(UINT8 numloops);
 
 extern UBYTE checkCollision(GameCharacter* one, GameCharacter* two);
+extern UBYTE checkPlayerCollision(GameCharacter* character);
 extern void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y);
 extern void setupPlayer();
 extern void playerAnimation();

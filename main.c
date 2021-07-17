@@ -10,6 +10,7 @@ void main(){
     //Choose font
     font_t min_font;
 
+    //Set up the background's palettes
     set_bkg_palette(0, 4, &backgroundPalette[0]);
     
     //Set up the titlescreen
@@ -38,7 +39,7 @@ void main(){
 
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
-    move_win(7, 136);
+    move_win(7, 132);
     set_sprite_data(0, 32, knight_sprites);
     set_sprite_palette(0, 5, &spritePalette[0]);
     setupPlayer();
