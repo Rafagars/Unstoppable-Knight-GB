@@ -107,7 +107,7 @@ void performDelay(UINT8 numloops){
 }
 
 UBYTE checkCollision(GameCharacter* one, GameCharacter* two){
-    return(one->x >= two->x && one->x <= two->x + two->w) && (one->y >= two->y && one->y <= two->y + two->h) || (two->x >= one->x && two->x <= one->x + one->w) && (two->y >= one->y && two->y <= one->y + one->h);
+    return(one->x  + 2 >= two->x && one->x + 2 <= two->x + two->w) && (one->y + 2 >= two->y && one->y + 2 <= two->y + two->h) || (two->x >= one->x + 2 && two->x <= one->x + one->w - 2) && (two->y >= one->y + 2 && two->y <= one->y + one->h - 2);
 }
 
 void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y){
