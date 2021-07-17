@@ -66,8 +66,6 @@ UINT8 swap = 0;
 UINT8 frame;
 UINT8 spriteID;
 
-UINT16 score = 0;
-UINT8 lives = 3;
 BOOLEAN hit = FALSE;
 
 uint16_t seed;

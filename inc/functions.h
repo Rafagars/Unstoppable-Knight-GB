@@ -19,9 +19,6 @@ extern const UWORD backgroundPalette[];
 extern UINT8 i;
 extern UINT8 spritesize;
 
-extern UINT16 score;
-extern UINT8 lives;
-
 extern BOOLEAN hit;
 
 extern UINT8 frame;
