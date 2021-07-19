@@ -38,8 +38,8 @@ void main(){
     font_set(min_font);
 
     //Start background music
-    //gbt_play(song_Data, 2, 6);
-    //gbt_loop(1);
+    gbt_play(song_Data, 2, 2);
+    gbt_loop(1);
 
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
@@ -80,8 +80,8 @@ void main(){
                 setupBackground();
                 SHOW_SPRITES;
                 performDelay(10);
-                //gbt_play(song_Data, 2, 6);
-                //gbt_loop(1);
+                gbt_play(song_Data, 2, 2);
+                gbt_loop(1);
             }
         }
         wait_vbl_done();

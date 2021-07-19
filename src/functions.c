@@ -338,6 +338,7 @@ void joyHandler(){
     case J_START:
     //Pause game
         game_on = FALSE;
+        gbt_stop();
         performDelay(10);
         break;
     default:
@@ -457,7 +458,6 @@ UINT8 randomize(UINT8 n){
 void gameOverScreen(){
     resetBackground();
     HIDE_WIN;
-    //fadeIn();
     gbt_stop();
     set_bkg_data(37, 13, Knight_tiles);
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
