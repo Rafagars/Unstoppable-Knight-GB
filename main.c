@@ -5,6 +5,8 @@
 #include "src/titlescreen_data.c"
 #include "src/titlescreen_map.c"
 
+extern const unsigned char * song_Data[];
+
 void main(){
 
     //Choose font
@@ -25,8 +27,6 @@ void main(){
 
     fadeOut();
 
-    //fadeIn();
-
     HIDE_BKG;
     DISPLAY_OFF;
 
@@ -36,6 +36,10 @@ void main(){
     font_init();
     min_font = font_load(font_min); // 36 tiles
     font_set(min_font);
+
+    //Start background music
+    //gbt_play(song_Data, 2, 6);
+    //gbt_loop(1);
 
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
@@ -76,8 +80,11 @@ void main(){
                 setupBackground();
                 SHOW_SPRITES;
                 performDelay(10);
+                //gbt_play(song_Data, 2, 6);
+                //gbt_loop(1);
             }
         }
         wait_vbl_done();
+        gbt_update(); // This will change to ROM bank 1.
     }
 }

@@ -79,9 +79,9 @@ void interruptLCD(){
 }
 
 void turnOnSound(){
-    NR52_REG = 0x80; //Turn on the sound
-    NR50_REG = 0x77; //Increase the volume to its max
-    NR51_REG = 0xFF; //Select which chanels we want to use in this case all of them. One bit for the L one bit for the R of all four channels
+    NR52_REG = 0x8F; //Turn on the sound
+    NR51_REG = 0x11; //Enable the sound channels
+    NR50_REG = 0x77; //Increase the volume to its max()
 }
 
 void turnOffSound(){
@@ -368,25 +368,6 @@ void fadeOut(){
     }
 }
 
-//Creates a fade in effect
-void fadeIn(){
-    for(i = 0; i < 3; i++){
-        switch (i)
-        {
-        case 0:
-            BGP_REG = 0xFE;
-            break;
-        case 1:
-            BGP_REG = 0xF9;
-            break;
-        case 2:
-            BGP_REG = 0xE4;
-            break;
-        }
-        performDelay(10);
-    }
-}
-
 void resetBackground(){
     HIDE_WIN;
     move_bkg(0, 0); //Moves background to its default position
@@ -477,6 +458,7 @@ void gameOverScreen(){
     resetBackground();
     HIDE_WIN;
     //fadeIn();
+    gbt_stop();
     set_bkg_data(37, 13, Knight_tiles);
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
     game_on = FALSE;

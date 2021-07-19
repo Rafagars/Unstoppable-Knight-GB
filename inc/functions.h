@@ -3,6 +3,7 @@
 
 #include <gb/gb.h>
 #include <rand.h>
+#include "../audio/gbt_player.h"
 #include "gameCharacter.h"
 #include "knight_sprites.h"
 #include "knight_tiles.h"
