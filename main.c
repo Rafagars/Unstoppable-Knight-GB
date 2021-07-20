@@ -38,7 +38,7 @@ void main(){
     font_set(min_font);
 
     //Start background music
-    gbt_play(song_Data, 2, 2);
+    gbt_play(song_Data, 2, 1);
     gbt_loop(1);
 
     setupBackground();

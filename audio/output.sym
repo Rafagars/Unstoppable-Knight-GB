@@ -8,8 +8,15 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
   0 _song0                                                         000000 GR
-  0 _song1                                                         00017E GR
-  0 _song_Data                                                     000302 GR
+  0 _song1                                                         000133 GR
+  0 _song2                                                         00025D GR
+  0 _song3                                                         00038B GR
+  0 _song4                                                         0004B5 GR
+  0 _song5                                                         0005E1 GR
+  0 _song6                                                         0006F5 GR
+  0 _song7                                                         00081C GR
+  0 _song8                                                         000940 GR
+  0 _song_Data                                                     000A69 GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
@@ -17,7 +24,7 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    308   flags    0
+   0 _CODE                                      size    A81   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8
