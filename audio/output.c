@@ -1,7 +1,7 @@
 
 // File created by mod2gbt
 
-#pragma bank 2
+//#pragma bank 2
 
 const unsigned char song0[] = {
   0x8A,0x91,0x00, 0x00, 0x00, 0x00,

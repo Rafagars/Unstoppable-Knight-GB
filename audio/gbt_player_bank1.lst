@@ -32,7 +32,7 @@
                                      32 
                                      33 ;-------------------------------------------------------------------------------
                                      34 
-                                     35 	.area	_CODE_1
+                                     35 	;.area	_CODE_1
                                      36 
                                      37 ;-------------------------------------------------------------------------------
                                      38 
@@ -1462,49 +1462,48 @@ Symbol Table
     .NR42   =  00FF21     |     .NR43   =  00FF22     |     .NR44   =  00FF23 
     .NR50   =  00FF24     |     .NR51   =  00FF25     |     .NR52   =  00FF26 
     .__.$$$.=  002710 L   |     .__.ABS.=  000000 G   |     .__.CPU.=  000000 L
-    .__.H$L.=  000000 L   |   1 _gbt_get   000120 R   |   1 ch1_dont   0001E1 R
-  1 ch1_freq   00019B R   |   1 ch1_has_   000171 R   |   1 ch1_inst   00015F R
-  1 ch1_just   000156 R   |   1 ch1_more   00013F R   |   1 ch1_no_m   000146 R
-  1 ch1_not_   000200 R   |   1 ch1_not_   000219 R   |   1 ch1_one_   000145 R
-  1 ch2_dont   000333 R   |   1 ch2_freq   0002F1 R   |   1 ch2_has_   0002C7 R
-  1 ch2_inst   0002B5 R   |   1 ch2_just   0002AC R   |   1 ch2_more   000295 R
-  1 ch2_no_m   00029C R   |   1 ch2_not_   000352 R   |   1 ch2_not_   00036B R
-  1 ch2_one_   00029B R   |   1 ch3_dont   0004A4 R   |   1 ch3_effe   000407 R
-  1 ch3_freq   000436 R   |   1 ch3_has_   000410 R   |   1 ch3_just   0003FE R
-  1 ch3_loop   000481 R   |   1 ch3_more   0003E7 R   |   1 ch3_no_m   0003EE R
-  1 ch3_not_   0004C3 R   |   1 ch3_not_   0004DC R   |   1 ch3_one_   0003ED R
-  1 ch4_dont   0005CF R   |   1 ch4_effe   000578 R   |   1 ch4_has_   000581 R
-  1 ch4_inst   00059D R   |   1 ch4_just   00056F R   |   1 ch4_more   000558 R
-  1 ch4_no_m   00055F R   |   1 ch4_one_   00055E R   |   1 channel1   000147 R
-  1 channel1   0001AB R   |   1 channel1   0001CA R   |   1 channel2   00029D R
-  1 channel2   000301 R   |   1 channel2   00031C R   |   1 channel3   0003EF R
-  1 channel3   000444 R   |   1 channel3   000488 R   |   1 channel4   000560 R
-  1 channel4   0005A2 R   |   1 channel4   0005B8 R   |   1 dont_loo   000636 R
+    .__.H$L.=  000000 L   |   0 _gbt_get   000120 R   |   0 ch1_dont   0001E1 R
+  0 ch1_freq   00019B R   |   0 ch1_has_   000171 R   |   0 ch1_inst   00015F R
+  0 ch1_just   000156 R   |   0 ch1_more   00013F R   |   0 ch1_no_m   000146 R
+  0 ch1_not_   000200 R   |   0 ch1_not_   000219 R   |   0 ch1_one_   000145 R
+  0 ch2_dont   000333 R   |   0 ch2_freq   0002F1 R   |   0 ch2_has_   0002C7 R
+  0 ch2_inst   0002B5 R   |   0 ch2_just   0002AC R   |   0 ch2_more   000295 R
+  0 ch2_no_m   00029C R   |   0 ch2_not_   000352 R   |   0 ch2_not_   00036B R
+  0 ch2_one_   00029B R   |   0 ch3_dont   0004A4 R   |   0 ch3_effe   000407 R
+  0 ch3_freq   000436 R   |   0 ch3_has_   000410 R   |   0 ch3_just   0003FE R
+  0 ch3_loop   000481 R   |   0 ch3_more   0003E7 R   |   0 ch3_no_m   0003EE R
+  0 ch3_not_   0004C3 R   |   0 ch3_not_   0004DC R   |   0 ch3_one_   0003ED R
+  0 ch4_dont   0005CF R   |   0 ch4_effe   000578 R   |   0 ch4_has_   000581 R
+  0 ch4_inst   00059D R   |   0 ch4_just   00056F R   |   0 ch4_more   000558 R
+  0 ch4_no_m   00055F R   |   0 ch4_one_   00055E R   |   0 channel1   000147 R
+  0 channel1   0001AB R   |   0 channel1   0001CA R   |   0 channel2   00029D R
+  0 channel2   000301 R   |   0 channel2   00031C R   |   0 channel3   0003EF R
+  0 channel3   000444 R   |   0 channel3   000488 R   |   0 channel4   000560 R
+  0 channel4   0005A2 R   |   0 channel4   0005B8 R   |   0 dont_loo   000636 R
     gbt_arpe   ****** GX  |     gbt_arpe   ****** GX  |     gbt_arpe   ****** GX
-  1 gbt_ch12   00060D R   |   1 gbt_ch12   00061E R   |   1 gbt_ch12   00060B R
-  1 gbt_ch12   00063D R   |   1 gbt_ch1_   000262 R   |   1 gbt_ch1_   00027D R
-  1 gbt_ch1_   00023B R   |   1 gbt_ch1_   00025B R   |   1 gbt_ch2_   0003B4 R
-  1 gbt_ch2_   0003CF R   |   1 gbt_ch2_   00038D R   |   1 gbt_ch2_   0003AD R
-  1 gbt_ch3_   000525 R   |   1 gbt_ch3_   000540 R   |   1 gbt_ch3_   0004FE R
-  1 gbt_ch3_   00051E R   |   1 gbt_ch4_   000606 R   |   1 gbt_ch4_   0005DF R
-  1 gbt_ch4_   0005FF R   |   1 gbt_chan   000471 R   |     gbt_chan   ****** GX
-  1 gbt_chan   00012C GR  |   1 gbt_chan   00022D R   |   1 gbt_chan   000282 GR
-  1 gbt_chan   00037F R   |   1 gbt_chan   0003D4 GR  |   1 gbt_chan   0004F0 R
-  1 gbt_chan   000545 GR  |   1 gbt_chan   0005D1 R   |     gbt_chan   ****** GX
+  0 gbt_ch12   00060D R   |   0 gbt_ch12   00061E R   |   0 gbt_ch12   00060B R
+  0 gbt_ch12   00063D R   |   0 gbt_ch1_   000262 R   |   0 gbt_ch1_   00027D R
+  0 gbt_ch1_   00023B R   |   0 gbt_ch1_   00025B R   |   0 gbt_ch2_   0003B4 R
+  0 gbt_ch2_   0003CF R   |   0 gbt_ch2_   00038D R   |   0 gbt_ch2_   0003AD R
+  0 gbt_ch3_   000525 R   |   0 gbt_ch3_   000540 R   |   0 gbt_ch3_   0004FE R
+  0 gbt_ch3_   00051E R   |   0 gbt_ch4_   000606 R   |   0 gbt_ch4_   0005DF R
+  0 gbt_ch4_   0005FF R   |   0 gbt_chan   000471 R   |     gbt_chan   ****** GX
+  0 gbt_chan   00012C GR  |   0 gbt_chan   00022D R   |   0 gbt_chan   000282 GR
+  0 gbt_chan   00037F R   |   0 gbt_chan   0003D4 GR  |   0 gbt_chan   0004F0 R
+  0 gbt_chan   000545 GR  |   0 gbt_chan   0005D1 R   |     gbt_chan   ****** GX
     gbt_curr   ****** GX  |     gbt_curr   ****** GX  |     gbt_curr   ****** GX
-    gbt_cut_   ****** GX  |     gbt_freq   ****** GX  |   1 gbt_freq   000090 R
+    gbt_cut_   ****** GX  |     gbt_freq   ****** GX  |   0 gbt_freq   000090 R
     gbt_get_   ****** GX  |     gbt_have   ****** GX  |     gbt_inst   ****** GX
-  1 gbt_nois   000080 R   |     gbt_pan    ****** GX  |     gbt_spee   ****** GX
-    gbt_temp   ****** GX  |     gbt_tick   ****** GX  |   1 gbt_upda   000645 GR
-  1 gbt_upda   000661 GR  |     gbt_upda   ****** GX  |     gbt_vol    ****** GX
-  1 gbt_wave   000000 R   |   1 refresh_   0001AB R   |   1 refresh_   000301 R
-  1 refresh_   000444 R   |   1 refresh_   0005A2 R
+  0 gbt_nois   000080 R   |     gbt_pan    ****** GX  |     gbt_spee   ****** GX
+    gbt_temp   ****** GX  |     gbt_tick   ****** GX  |   0 gbt_upda   000645 GR
+  0 gbt_upda   000661 GR  |     gbt_upda   ****** GX  |     gbt_vol    ****** GX
+  0 gbt_wave   000000 R   |   0 refresh_   0001AB R   |   0 refresh_   000301 R
+  0 refresh_   000444 R   |   0 refresh_   0005A2 R
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE      size      0   flags    0
-   1 _CODE_1    size    67E   flags    0
+   0 _CODE      size    67E   flags    0
 
