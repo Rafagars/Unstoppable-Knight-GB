@@ -10,7 +10,8 @@
 #include "ForestBG.h"
 #include "GameOverBackground.h"
 
-#define SPEED 3
+
+extern const unsigned char * song_Data[];
 
 extern BOOLEAN game_on;
 
@@ -38,7 +39,7 @@ extern UBYTE checkCollision(GameCharacter* one, GameCharacter* two);
 extern UBYTE checkPlayerCollision(GameCharacter* character);
 extern void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y);
 extern void setupPlayer();
-extern void playerAnimation();
+extern void Animations();
 extern void setupCoins();
 extern void positionCoins();
 extern void setupArrow();

@@ -142,7 +142,7 @@ void setupPlayer(){
     moveCharacter(&player, player.x, player.y);
 }
 
-void playerAnimation(){
+void Animations(){
     UINT8 n = 3*frame + frame;
 
     //Orc Animation
@@ -164,6 +164,7 @@ void playerAnimation(){
         set_sprite_tile(3, 3 + n);
         performDelay(2);
     } else {
+        //Default Animation
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
         set_sprite_tile(1, 1 + n);
@@ -338,7 +339,7 @@ void joyHandler(){
     case J_START:
     //Pause game
         game_on = FALSE;
-        gbt_stop();
+        gbt_pause(0);
         performDelay(10);
         break;
     default:
@@ -462,6 +463,7 @@ void gameOverScreen(){
     set_bkg_data(37, 13, Knight_tiles);
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
     game_on = FALSE;
+    //Restart everything to its default values
     hit = FALSE;
     player.health = 3;
     windowmap[6] = 0x01;
@@ -473,4 +475,6 @@ void gameOverScreen(){
     setupCoins();
     setupArrow();
     setupObstacles();
+    gbt_play(song_Data, 2, 2);
+    gbt_loop(1);
 }

@@ -5,8 +5,6 @@
 #include "src/titlescreen_data.c"
 #include "src/titlescreen_map.c"
 
-extern const unsigned char * song_Data[];
-
 void main(){
 
     //Choose font
@@ -25,7 +23,7 @@ void main(){
     //The game won't begin until the start button is pressed
     waitpad(J_START | J_A);
 
-    fadeOut();
+    fadeOut(); //Fade out effect
 
     HIDE_BKG;
     DISPLAY_OFF;
@@ -43,9 +41,9 @@ void main(){
 
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
-    move_win(7, 132);
+    move_win(7, 132); //Bottom of the screen
     set_sprite_data(0, 32, knight_sprites);
-    set_sprite_palette(0, 5, &spritePalette[0]);
+    set_sprite_palette(0, 5, &spritePalette[0]); //Load sprite's color palettes
     setupPlayer();
     setupCoins();
     setupArrow();
@@ -56,23 +54,24 @@ void main(){
         SHOW_WIN;
         if(game_on == TRUE){
             scroll_bkg(0, 4);
-            joyHandler();
+            joyHandler(); //Instructions for the controls
             if(player.x < 48){
                 player.x = 48;
             } else if(player.x > 112){
                 player.x = 112;
             }
             positionCoins();
-            playerAnimation();
+            Animations();
             moveCharacter(&player, player.x, player.y);
             positionArrow();
             positionObstacles();
             updateHealth();
             //Updates the whole window layer
             set_win_tiles(0, 0, 20, 1, windowmap);
-            if (frame > 2){
+            if (frame > 2){ //Restart animation
                 frame = 0;
             }
+            gbt_update(); // This will change to ROM bank 1.
         } else {
             if(joypad() & J_START){
                 //Restart game
@@ -80,11 +79,9 @@ void main(){
                 setupBackground();
                 SHOW_SPRITES;
                 performDelay(10);
-                gbt_play(song_Data, 2, 2);
-                gbt_loop(1);
+                gbt_pause(1);
             }
         }
         wait_vbl_done();
-        gbt_update(); // This will change to ROM bank 1.
     }
 }

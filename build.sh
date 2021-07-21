@@ -15,3 +15,11 @@ rm *.o *.lst *.asm *.sym
 cd src
 
 rm *.o *.lst *.asm *.sym
+
+cd ../
+
+cd audio
+
+rm *.o *.lst *.asm *.sym
+
+cd ../
