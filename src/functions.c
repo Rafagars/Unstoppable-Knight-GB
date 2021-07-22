@@ -176,7 +176,7 @@ void Animations(){
 
 void setupCoins(){
     for(i = 0; i < 3; i++){
-        coins[i].x = 16*randomize(6) + 48;
+        coins[i].x = 16*randomize(5) + 48;
         coins[i].y = player.y + 120 + randomize(80);
         coins[i].h = 8;
         coins[i].w = 8;
@@ -294,7 +294,7 @@ void positionObstacles(){
             obstacles[i].y -= 4;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
-                hit = FALSE;
+                hit = FALSE; // Makes the player hitable again
             }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
@@ -339,7 +339,6 @@ void joyHandler(){
     case J_START:
     //Pause game
         game_on = FALSE;
-        gbt_pause(0);
         performDelay(10);
         break;
     default:
@@ -381,7 +380,7 @@ void updateCoinsCounter(){
         swap = (UINT8) windowmap[13] + 1;
         windowmap[13] = (char) swap;
         windowmap[14] = 0x01;
-    } else if(windowmap[13] == 0x0A){
+    } else if(windowmap[13] == 0x0A){ //100 coins
         windowmap[13] = 0x01;
         if(player.health < 3){
             player.health++;

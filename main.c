@@ -79,7 +79,6 @@ void main(){
                 setupBackground();
                 SHOW_SPRITES;
                 performDelay(10);
-                gbt_pause(1);
             }
         }
         wait_vbl_done();
