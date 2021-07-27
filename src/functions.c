@@ -32,6 +32,13 @@ const UWORD spritePalette[] = {
     knight_spritesCGBPal4c1,
     knight_spritesCGBPal4c2,
     knight_spritesCGBPal4c3,
+
+
+    /* Gameboy Color palette 5 */
+    knight_spritesCGBPal5c0,
+    knight_spritesCGBPal5c1,
+    knight_spritesCGBPal5c2,
+    knight_spritesCGBPal5c3,
 };
 
 const UWORD backgroundPalette[] = {
@@ -64,6 +71,7 @@ UINT8 i;
 UINT8 spritesize = 8;
 UINT8 swap = 0;
 UINT8 frame;
+UINT8 expFrame = 0;
 UINT8 spriteID;
 
 BOOLEAN hit = FALSE;
@@ -153,10 +161,10 @@ void Animations(){
 
     if(hit == TRUE){
         //Hit effect
-        set_sprite_tile(0, 32);
-        set_sprite_tile(2, 32);
-        set_sprite_tile(1, 32);
-        set_sprite_tile(3, 32);
+        set_sprite_tile(0, 38);
+        set_sprite_tile(2, 38);
+        set_sprite_tile(1, 38);
+        set_sprite_tile(3, 38);
         performDelay(2);
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
@@ -291,7 +299,7 @@ void setupObstacles(){
 void positionObstacles(){
     for(i = 0; i < 2; i++){
         if(obstacles[i].health > 0){
-            obstacles[i].y -= 4;
+            obstacles[i].y -= 4 + 2*i;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
                 hit = FALSE; // Makes the player hitable again
@@ -304,13 +312,53 @@ void positionObstacles(){
             obstacles[i].x = 16*randomize(4) + 64;
             obstacles[i].y = player.y + 120;
             obstacles[i].health = 1;
-            if(checkCollision(&obstacles[0], &obstacles[1]) == TRUE){
+            if(obstacles[0].x == obstacles[1].x){
                 obstacles[1].x = 16*randomize(4) + 64;
             } 
         }
         moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y);
     }
 }
+
+void setupBombs(){
+    for(i = 0; i < 1; i++){
+        bombs[i].x = 16*randomize(5) + 48;
+        bombs[i].y = player.y + 120;
+        bombs[i].h = 8;
+        bombs[i].w = 6;
+        bombs[i].health = 1;
+
+        set_sprite_tile(17 + i, 31);
+        set_sprite_prop(17 + i, 0);
+        bombs[i].spriteID[0] = 17 + i;
+
+        move_sprite(bombs[i].spriteID[0], bombs[i].x, bombs[i].y);
+    }
+}
+
+void positionBombs(){
+    for(i = 0; i < 1; i++){
+        if(bombs[i].health > 0){
+            bombs[i].y -= 4;
+            if(checkPlayerCollision(&bombs[i]) == TRUE && hit == FALSE){
+                bombs[i].health = 0;
+                player.health--;
+                hit = TRUE;
+                hitSound();
+            } else if(bombs[i].y < 8){
+                bombs[i].health = 0;
+                set_sprite_tile(17 + i, 31);
+                set_sprite_prop(17 + i, 0);
+            }
+        } else {
+            bombs[i].x = 16*randomize(5) + 48;
+            bombs[i].y = player.y + 120;
+            bombs[i].health = 1;
+        }
+        move_sprite(bombs[i].spriteID[0], bombs[i].x, bombs[i].y);
+    }
+}
+
 
 void setupBackground(){
     set_bkg_data(37, 13, Knight_tiles);
@@ -474,6 +522,7 @@ void gameOverScreen(){
     setupCoins();
     setupArrow();
     setupObstacles();
+    setupBombs();
     gbt_play(song_Data, 2, 2);
     gbt_loop(1);
 }

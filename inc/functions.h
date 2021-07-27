@@ -24,6 +24,7 @@ extern UINT8 spritesize;
 extern BOOLEAN hit;
 
 extern UINT8 frame;
+extern UINT8 expFrame;
 
 extern uint16_t seed;
 
@@ -46,6 +47,9 @@ extern void setupArrow();
 extern void positionArrow();
 extern void setupObstacles();
 extern void positionObstacles();
+extern void setupBombs();
+extern void positionBombs();
+extern void explosionAnimation(UINT8 id);
 
 extern void joyHandler();
 
