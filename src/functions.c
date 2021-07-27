@@ -291,7 +291,7 @@ void setupObstacles(){
 void positionObstacles(){
     for(i = 0; i < 2; i++){
         if(obstacles[i].health > 0){
-            obstacles[i].y -= 4;
+            obstacles[i].y -= 4 + 2*i;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
                 hit = FALSE; // Makes the player hitable again
