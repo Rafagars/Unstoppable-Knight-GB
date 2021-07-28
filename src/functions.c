@@ -351,8 +351,8 @@ void positionObstacles(){
 void setupBombs(){ 
     bombs.x = 16*randomize(5) + 48;
     bombs.y = player.y + 120;
-    bombs.h = 8;
-    bombs.w = 6;
+    bombs.h = 16;
+    bombs.w = 16;
     bombs.health = 1;
 
     set_sprite_tile(17 , 32);
