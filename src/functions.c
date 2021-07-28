@@ -147,9 +147,18 @@ void Animations(){
 
     //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
+    set_sprite_prop(obstacles[1].spriteID[0], S_PRIORITY | 4);
     set_sprite_tile(obstacles[1].spriteID[2], 20 + n);
+    set_sprite_prop(obstacles[1].spriteID[2], S_PRIORITY | 4);    
     set_sprite_tile(obstacles[1].spriteID[1], 21 + n);
-    set_sprite_tile(obstacles[1].spriteID[3], 22 + n);   
+    set_sprite_prop(obstacles[1].spriteID[1], S_PRIORITY | 4);    
+    set_sprite_tile(obstacles[1].spriteID[3], 22 + n); 
+    set_sprite_prop(obstacles[1].spriteID[3], S_PRIORITY | 4);
+
+    if(obstacles[0].y < 8){
+        hit = FALSE; // Makes the player hitable again
+    }
+
 
     if(hit == TRUE){
         //Hit effect
@@ -294,7 +303,6 @@ void positionObstacles(){
             obstacles[i].y -= 4 + 2*i;
             if(obstacles[i]. y < 8){
                 obstacles[i].health = 0;
-                hit = FALSE; // Makes the player hitable again
             }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
