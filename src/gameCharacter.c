@@ -8,4 +8,4 @@ GameCharacter arrow;
 
 GameCharacter obstacles[2];
 
-GameCharacter bombs[2];
+GameCharacter bombs;

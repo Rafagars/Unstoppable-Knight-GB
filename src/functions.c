@@ -75,6 +75,7 @@ UINT8 expFrame = 0;
 UINT8 spriteID;
 
 BOOLEAN hit = FALSE;
+BOOLEAN explosion = FALSE;
 
 uint16_t seed;
 
@@ -152,12 +153,21 @@ void setupPlayer(){
 
 void Animations(){
     UINT8 n = 3*frame + frame;
+    UINT8 m = 3*expFrame + expFrame;
 
     //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
+    set_sprite_prop(obstacles[1].spriteID[0], S_PRIORITY | 4);
     set_sprite_tile(obstacles[1].spriteID[2], 20 + n);
+    set_sprite_prop(obstacles[1].spriteID[2], S_PRIORITY | 4);    
     set_sprite_tile(obstacles[1].spriteID[1], 21 + n);
-    set_sprite_tile(obstacles[1].spriteID[3], 22 + n);   
+    set_sprite_prop(obstacles[1].spriteID[1], S_PRIORITY | 4);    
+    set_sprite_tile(obstacles[1].spriteID[3], 22 + n); 
+    set_sprite_prop(obstacles[1].spriteID[3], S_PRIORITY | 4);
+
+    if(obstacles[0].y < 8){
+        hit = FALSE;
+    }
 
     if(hit == TRUE){
         //Hit effect
@@ -180,6 +190,15 @@ void Animations(){
         performDelay(4);
     }
     frame++;
+}
+
+void explosionAnimation(){
+    UINT8 m = 3*expFrame + expFrame;
+    if(explosion == TRUE){
+        set_sprite_tile(bombs.spriteID[0], 19 + m);
+        performDelay(2);
+        expFrame++;
+    }
 }
 
 void setupCoins(){
@@ -300,9 +319,8 @@ void positionObstacles(){
     for(i = 0; i < 2; i++){
         if(obstacles[i].health > 0){
             obstacles[i].y -= 4 + 2*i;
-            if(obstacles[i]. y < 8){
+            if(obstacles[i].y < 8){
                 obstacles[i].health = 0;
-                hit = FALSE; // Makes the player hitable again
             }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
@@ -312,51 +330,54 @@ void positionObstacles(){
             obstacles[i].x = 16*randomize(4) + 64;
             obstacles[i].y = player.y + 120;
             obstacles[i].health = 1;
-            if(obstacles[0].x == obstacles[1].x){
-                obstacles[1].x = 16*randomize(4) + 64;
+            if(obstacles[0].x == obstacles[1].x && obstacles[0].y - obstacles[1].y < 16){
+                if(obstacles[0].x > 64 && obstacles[0].x < 80){
+                    obstacles[1].x = obstacles[0].x + 16;    
+                } else {
+                    obstacles[1].x = obstacles[0].x - 16;    
+                }
             } 
         }
         moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y);
     }
 }
 
-void setupBombs(){
-    for(i = 0; i < 1; i++){
-        bombs[i].x = 16*randomize(5) + 48;
-        bombs[i].y = player.y + 120;
-        bombs[i].h = 8;
-        bombs[i].w = 6;
-        bombs[i].health = 1;
+void setupBombs(){ 
+    bombs.x = 16*randomize(5) + 48;
+    bombs.y = player.y + 120;
+    bombs.h = 8;
+    bombs.w = 6;
+    bombs.health = 1;
 
-        set_sprite_tile(17 + i, 31);
-        set_sprite_prop(17 + i, 0);
-        bombs[i].spriteID[0] = 17 + i;
+    set_sprite_tile(17 + i, 31);
+    set_sprite_prop(17 + i, 0);
+    bombs.spriteID[0] = 17 + i;
 
-        move_sprite(bombs[i].spriteID[0], bombs[i].x, bombs[i].y);
-    }
+    move_sprite(bombs.spriteID[0], bombs.x, bombs.y); 
 }
 
 void positionBombs(){
-    for(i = 0; i < 1; i++){
-        if(bombs[i].health > 0){
-            bombs[i].y -= 4;
-            if(checkPlayerCollision(&bombs[i]) == TRUE && hit == FALSE){
-                bombs[i].health = 0;
-                player.health--;
-                hit = TRUE;
-                hitSound();
-            } else if(bombs[i].y < 8){
-                bombs[i].health = 0;
-                set_sprite_tile(17 + i, 31);
-                set_sprite_prop(17 + i, 0);
-            }
-        } else {
-            bombs[i].x = 16*randomize(5) + 48;
-            bombs[i].y = player.y + 120;
-            bombs[i].health = 1;
+    if(bombs.health > 0){
+        bombs.y -= 4;
+        if(checkPlayerCollision(&bombs) == TRUE && hit == FALSE){
+            bombs.health = 0;
+            explosionAnimation();
+            player.health--;
+            hit = TRUE;
+            hitSound();
+        } else if(bombs.y < 8){
+            bombs.health = 0;
+            set_sprite_tile(17 + i, 31);
+            set_sprite_prop(17 + i, 0);
+            explosion = FALSE;
         }
-        move_sprite(bombs[i].spriteID[0], bombs[i].x, bombs[i].y);
+    } else {
+        bombs.x = 16*randomize(5) + 48;
+        bombs.y = player.y + 120;
+        bombs.health = 1;
     }
+    move_sprite(bombs.spriteID[0], bombs.x, bombs.y);
+
 }
 
 

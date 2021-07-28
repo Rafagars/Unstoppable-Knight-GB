@@ -22,6 +22,7 @@ extern UINT8 i;
 extern UINT8 spritesize;
 
 extern BOOLEAN hit;
+extern BOOLEAN explosion;
 
 extern UINT8 frame;
 extern UINT8 expFrame;
@@ -41,6 +42,7 @@ extern UBYTE checkPlayerCollision(GameCharacter* character);
 extern void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y);
 extern void setupPlayer();
 extern void Animations();
+extern void explosionAnimation();
 extern void setupCoins();
 extern void positionCoins();
 extern void setupArrow();
@@ -49,7 +51,6 @@ extern void setupObstacles();
 extern void positionObstacles();
 extern void setupBombs();
 extern void positionBombs();
-extern void explosionAnimation(UINT8 id);
 
 extern void joyHandler();
 
