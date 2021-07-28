@@ -45,7 +45,7 @@ void main(){
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 132); //Bottom of the screen
-    set_sprite_data(0, 37, knight_sprites);
+    set_sprite_data(0, 48, knight_sprites);
     set_sprite_palette(0, 5, &spritePalette[0]); //Load sprite's color palettes
     setupPlayer();
     setupCoins();

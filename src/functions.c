@@ -165,16 +165,26 @@ void Animations(){
     set_sprite_tile(obstacles[1].spriteID[3], 22 + n); 
     set_sprite_prop(obstacles[1].spriteID[3], S_PRIORITY | 4);
 
+    //Bomb animation
+    set_sprite_tile(bombs.spriteID[0], 32 + n);
+    set_sprite_prop(bombs.spriteID[0], 0);
+    set_sprite_tile(bombs.spriteID[2], 33 + n);
+    set_sprite_prop(bombs.spriteID[2], 0);    
+    set_sprite_tile(bombs.spriteID[1],  34 + n);
+    set_sprite_prop(bombs.spriteID[1], 0);    
+    set_sprite_tile(bombs.spriteID[3], 35 + n); 
+    set_sprite_prop(bombs.spriteID[3], 0);    
+
     if(obstacles[0].y < 8){
         hit = FALSE;
     }
 
     if(hit == TRUE){
         //Hit effect
-        set_sprite_tile(0, 38);
-        set_sprite_tile(2, 38);
-        set_sprite_tile(1, 38);
-        set_sprite_tile(3, 38);
+        set_sprite_tile(0, 49);
+        set_sprite_tile(2, 49);
+        set_sprite_tile(1, 49);
+        set_sprite_tile(3, 49);
         performDelay(2);
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
@@ -237,16 +247,12 @@ void positionCoins(){
             coins[i].health = 1;
 
             //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
-            if(checkCollision(&coins[i], &coins[i+1]) == TRUE){
+            
+            if(checkCollision(&coins[i], &obstacles[0]) == TRUE || checkCollision(&coins[i], &bombs) == TRUE || checkCollision(&coins[i], &coins[i+1]) == TRUE){
                 coins[i].x = 16*randomize(5) + 48;
-                coins[i].y = player.y + 120 + 16; 
+                coins[i].y = player.y + 120; 
             }
-            for(UINT8 j = 0; j < 2; j++){
-                if(checkCollision(&coins[i], &obstacles[j]) == TRUE){
-                    coins[i].x = 16*randomize(5) + 48;
-                    coins[i].y = player.y + 120 + 24;  
-                }
-            }
+            
             //
         }
         move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
@@ -349,11 +355,20 @@ void setupBombs(){
     bombs.w = 6;
     bombs.health = 1;
 
-    set_sprite_tile(17 + i, 31);
-    set_sprite_prop(17 + i, 0);
-    bombs.spriteID[0] = 17 + i;
+    set_sprite_tile(17 , 32);
+    set_sprite_prop(17, 0);
+    bombs.spriteID[0] = 17;
+    set_sprite_tile(18, 33);
+    set_sprite_prop(18, 0);
+    bombs.spriteID[2] = 18;
+    set_sprite_tile(19, 33);
+    set_sprite_prop(19, 0);
+    bombs.spriteID[1] = 19;
+    set_sprite_tile(20, 34);
+    set_sprite_prop(20, 0);
+    bombs.spriteID[3] = 20;
 
-    move_sprite(bombs.spriteID[0], bombs.x, bombs.y); 
+    moveCharacter(&bombs, bombs.x, bombs.y); 
 }
 
 void positionBombs(){
@@ -375,8 +390,12 @@ void positionBombs(){
         bombs.x = 16*randomize(5) + 48;
         bombs.y = player.y + 120;
         bombs.health = 1;
+        if(checkCollision(&bombs, &obstacles[0]) == TRUE){
+            bombs.x = 16*randomize(5) + 48;
+            bombs.y = player.y + 120;
+        }
     }
-    move_sprite(bombs.spriteID[0], bombs.x, bombs.y);
+    moveCharacter(&bombs, bombs.x, bombs.y);
 
 }
 
