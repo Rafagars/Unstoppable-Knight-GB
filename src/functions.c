@@ -32,8 +32,7 @@ const UWORD spritePalette[] = {
     knight_spritesCGBPal4c1,
     knight_spritesCGBPal4c2,
     knight_spritesCGBPal4c3,
-
-
+    
     /* Gameboy Color palette 5 */
     knight_spritesCGBPal5c0,
     knight_spritesCGBPal5c1,
@@ -71,7 +70,6 @@ UINT8 i;
 UINT8 spritesize = 8;
 UINT8 swap = 0;
 UINT8 frame;
-UINT8 expFrame = 0;
 UINT8 spriteID;
 
 BOOLEAN hit = FALSE;
@@ -151,9 +149,8 @@ void setupPlayer(){
     moveCharacter(&player, player.x, player.y);
 }
 
-void Animations(){
+void animations(){
     UINT8 n = 3*frame + frame;
-    UINT8 m = 3*expFrame + expFrame;
 
     //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
@@ -166,25 +163,35 @@ void Animations(){
     set_sprite_prop(obstacles[1].spriteID[3], S_PRIORITY | 4);
 
     //Bomb animation
-    set_sprite_tile(bombs.spriteID[0], 32 + n);
-    set_sprite_prop(bombs.spriteID[0], 0);
-    set_sprite_tile(bombs.spriteID[2], 33 + n);
-    set_sprite_prop(bombs.spriteID[2], 0);    
-    set_sprite_tile(bombs.spriteID[1],  34 + n);
-    set_sprite_prop(bombs.spriteID[1], 0);    
-    set_sprite_tile(bombs.spriteID[3], 35 + n); 
-    set_sprite_prop(bombs.spriteID[3], 0);    
-
+    if(explosion == FALSE){
+        set_sprite_tile(bombs.spriteID[0], 32 + n);
+        set_sprite_prop(bombs.spriteID[0], 0);
+        set_sprite_tile(bombs.spriteID[2], 33 + n);
+        set_sprite_prop(bombs.spriteID[2], 0);    
+        set_sprite_tile(bombs.spriteID[1],  34 + n);
+        set_sprite_prop(bombs.spriteID[1], 0);    
+        set_sprite_tile(bombs.spriteID[3], 35 + n); 
+        set_sprite_prop(bombs.spriteID[3], 0);    
+    } else{
+        set_sprite_tile(bombs.spriteID[0], 48 + n);
+        set_sprite_prop(bombs.spriteID[0], 5);
+        set_sprite_tile(bombs.spriteID[2], 49 + n);
+        set_sprite_prop(bombs.spriteID[2], 5);    
+        set_sprite_tile(bombs.spriteID[1], 50 + n);
+        set_sprite_prop(bombs.spriteID[1], 5);    
+        set_sprite_tile(bombs.spriteID[3], 51 + n); 
+        set_sprite_prop(bombs.spriteID[3], 5); 
+    }
     if(obstacles[0].y < 8){
         hit = FALSE;
     }
 
     if(hit == TRUE){
         //Hit effect
-        set_sprite_tile(0, 49);
-        set_sprite_tile(2, 49);
-        set_sprite_tile(1, 49);
-        set_sprite_tile(3, 49);
+        set_sprite_tile(0, 64);
+        set_sprite_tile(2, 64);
+        set_sprite_tile(1, 64);
+        set_sprite_tile(3, 64);
         performDelay(2);
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
@@ -200,15 +207,6 @@ void Animations(){
         performDelay(4);
     }
     frame++;
-}
-
-void explosionAnimation(){
-    UINT8 m = 3*expFrame + expFrame;
-    if(explosion == TRUE){
-        set_sprite_tile(bombs.spriteID[0], 19 + m);
-        performDelay(2);
-        expFrame++;
-    }
 }
 
 void setupCoins(){
@@ -325,7 +323,7 @@ void positionObstacles(){
     for(i = 0; i < 2; i++){
         if(obstacles[i].health > 0){
             obstacles[i].y -= 4 + 2*i;
-            if(obstacles[i].y < 8){
+            if(obstacles[i].y < 4){
                 obstacles[i].health = 0;
             }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
@@ -375,15 +373,12 @@ void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
         if(checkPlayerCollision(&bombs) == TRUE && hit == FALSE){
-            bombs.health = 0;
-            explosionAnimation();
             player.health--;
             hit = TRUE;
             hitSound();
-        } else if(bombs.y < 8){
+            explosion = TRUE;
+        } else if(bombs.y < 2){
             bombs.health = 0;
-            set_sprite_tile(17 + i, 31);
-            set_sprite_prop(17 + i, 0);
             explosion = FALSE;
         }
     } else {
@@ -552,6 +547,7 @@ void gameOverScreen(){
     game_on = FALSE;
     //Restart everything to its default values
     hit = FALSE;
+    explosion= FALSE;
     player.health = 3;
     windowmap[6] = 0x01;
     windowmap[7] = 0x01;

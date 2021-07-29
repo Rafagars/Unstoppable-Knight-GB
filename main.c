@@ -45,8 +45,8 @@ void main(){
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 132); //Bottom of the screen
-    set_sprite_data(0, 48, knight_sprites);
-    set_sprite_palette(0, 5, &spritePalette[0]); //Load sprite's color palettes
+    set_sprite_data(0, 64, knight_sprites);
+    set_sprite_palette(0, 6, &spritePalette[0]); //Load sprite's color palettes
     setupPlayer();
     setupCoins();
     setupArrow();
@@ -65,7 +65,7 @@ void main(){
                 player.x = 112;
             }
             positionCoins();
-            Animations();
+            animations();
             moveCharacter(&player, player.x, player.y);
             positionArrow();
             positionObstacles();
