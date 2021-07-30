@@ -57,8 +57,9 @@ void main(){
     while(1){
         SHOW_WIN;
         if(game_on == TRUE){
-            scroll_bkg(0, 4);
+            scroll_bkg(0, 4); // Vertical Scroll
             joyHandler(); //Instructions for the controls
+            // Player's movement limits
             if(player.x < 48){
                 player.x = 48;
             } else if(player.x > 112){
@@ -71,8 +72,7 @@ void main(){
             positionObstacles();
             positionBombs();
             updateHealth();
-            //Updates the whole window layer
-            set_win_tiles(0, 0, 20, 1, windowmap);
+            set_win_tiles(0, 0, 20, 1, windowmap);  //Updates the whole window layer
             if (frame > 2){ //Restart animation
                 frame = 0;
             }
