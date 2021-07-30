@@ -184,7 +184,7 @@ void animations(){
 void setupCoins(){
     for(i = 0; i < 3; i++){
         coins[i].x = 16*randomize(5) + 48;
-        coins[i].y = coins[i].y + 120 + 16*i;
+        coins[i].y = player.y + 120 + 16*i;
         coins[i].h = 8;
         coins[i].w = 8;
         coins[i].health = 1;
@@ -213,14 +213,14 @@ void positionCoins(){
             }
         } else {
             coins[i].x = 16*randomize(5) + 48;
-            coins[i].y = coins[i].y + 120 + 16*i;  
+            coins[i].y = player.y + 120 + 16*i;  
             coins[i].health = 1;
 
             //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
             
             if(checkCollision(&coins[i], &obstacles[0]) == TRUE || checkCollision(&coins[i], &bombs) == TRUE || checkCollision(&coins[i], &coins[i+1]) == TRUE){
                 coins[i].x = 16*randomize(5) + 48;
-                coins[i].y = coins[i].y + 120 + 16*i; 
+                coins[i].y = player.y + 120 + 16*i; 
             }
             
             //
