@@ -20,4 +20,6 @@ extern GameCharacter arrow;
 
 extern GameCharacter obstacles[2];
 
+extern GameCharacter bombs;
+
 #endif

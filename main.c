@@ -10,8 +10,8 @@ void main(){
     //Choose font
     font_t min_font;
 
-    //Set up the background's palettes
-    set_bkg_palette(0, 4, &backgroundPalette[0]);
+    //Set up the background's palettes for the Title Screen
+    set_bkg_palette(0, 5, &spritePalette[0]);
     
     //Set up the titlescreen
     set_bkg_data(0, 149, titlescreen_data);
@@ -24,6 +24,9 @@ void main(){
     waitpad(J_START | J_A);
 
     fadeOut(); //Fade out effect
+
+    //Set up the background's palettes 
+    set_bkg_palette(0, 4, &backgroundPalette[0]);
 
     HIDE_BKG;
     DISPLAY_OFF;
@@ -42,32 +45,34 @@ void main(){
     setupBackground();
     set_win_tiles(0, 0, 20, 1, windowmap);
     move_win(7, 132); //Bottom of the screen
-    set_sprite_data(0, 32, knight_sprites);
-    set_sprite_palette(0, 5, &spritePalette[0]); //Load sprite's color palettes
+    set_sprite_data(0, 64, knight_sprites);
+    set_sprite_palette(0, 6, &spritePalette[0]); //Load sprite's color palettes
     setupPlayer();
     setupCoins();
     setupArrow();
     setupObstacles();
+    setupBombs();
     init();
 
     while(1){
         SHOW_WIN;
         if(game_on == TRUE){
-            scroll_bkg(0, 4);
+            scroll_bkg(0, 4); // Vertical Scroll
             joyHandler(); //Instructions for the controls
+            // Player's movement limits
             if(player.x < 48){
                 player.x = 48;
             } else if(player.x > 112){
                 player.x = 112;
             }
             positionCoins();
-            Animations();
+            animations();
             moveCharacter(&player, player.x, player.y);
             positionArrow();
             positionObstacles();
+            positionBombs();
             updateHealth();
-            //Updates the whole window layer
-            set_win_tiles(0, 0, 20, 1, windowmap);
+            set_win_tiles(0, 0, 20, 1, windowmap);  //Updates the whole window layer
             if (frame > 2){ //Restart animation
                 frame = 0;
             }
