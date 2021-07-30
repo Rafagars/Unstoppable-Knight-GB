@@ -20,6 +20,7 @@ extern BOOLEAN explosion;
 
 extern UBYTE checkCollision(GameCharacter* one, GameCharacter* two);
 extern UBYTE checkPlayerCollision(GameCharacter* character);
+extern void checkObstacles(GameCharacter* one, GameCharacter* two);
 extern void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y);
 extern void setupPlayer();
 extern void animations();

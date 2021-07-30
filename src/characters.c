@@ -82,6 +82,16 @@ UBYTE checkPlayerCollision(GameCharacter* character){
     return(player.x  + 2 >= character->x && player.x + 2 <= character->x + character->w) && (player.y + 2 >= character->y && player.y + 2 <= character->y + character->h) || (character->x >= player.x + 2 && character->x <= player.x + player.w - 2) && (character->y >= player.y + 2 && character->y <= player.y + player.h - 2);
 }
 
+void checkObstacles(GameCharacter* one, GameCharacter* two){
+    if(one->x == two->x && one->y - two->y < 16){
+        if(one->x > 64 && one->x < 80){
+            two->x = one->x + 16;    
+        } else {
+            two->x = one->x - 16;    
+        }
+    }
+}
+
 void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y){
     move_sprite(character->spriteID[0], x, y);
     move_sprite(character->spriteID[1], x + spritesize, y);
@@ -296,13 +306,7 @@ void positionObstacles(){
             obstacles[i].x = 16*randomize(4) + 64;
             obstacles[i].y = player.y + 120;
             obstacles[i].health = 1;
-            if(obstacles[0].x == obstacles[1].x && obstacles[0].y - obstacles[1].y < 16){
-                if(obstacles[0].x > 64 && obstacles[0].x < 80){
-                    obstacles[1].x = obstacles[0].x + 16;    
-                } else {
-                    obstacles[1].x = obstacles[0].x - 16;    
-                }
-            } 
+            checkObstacles(&obstacles[0], &obstacles[1]);
         }
         moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y);
     }
@@ -328,13 +332,7 @@ void setupBombs(){
     set_sprite_prop(20, 0);
     bombs.spriteID[3] = 20;
 
-    if(obstacles[0].x == bombs.x && obstacles[0].y - bombs.y < 16){
-        if(obstacles[0].x > 64 && obstacles[0].x < 80){
-            bombs.x = obstacles[0].x + 16;    
-        } else {
-            bombs.x = obstacles[0].x - 16;    
-        }
-    }
+    checkObstacles(&obstacles[0], &bombs);
 
     moveCharacter(&bombs, bombs.x, bombs.y); 
 }
@@ -356,13 +354,7 @@ void positionBombs(){
         bombs.y = player.y + 120;
         bombs.health = 1;
         
-        if(obstacles[0].x == bombs.x && obstacles[0].y - bombs.y < 16){
-            if(obstacles[0].x > 64 && obstacles[0].x < 80){
-                bombs.x = obstacles[0].x + 16;    
-            } else {
-                bombs.x = obstacles[0].x - 16;    
-            }
-        } 
+        checkObstacles(&obstacles[0], &bombs);
     }
     moveCharacter(&bombs, bombs.x, bombs.y);
 
