@@ -14,7 +14,9 @@ extern UINT8 i;
 extern UINT8 spritesize;
 extern UINT8 frame;
 extern UINT8 spriteID;
+extern UINT8 timer;
 
+extern BOOLEAN shield;
 extern BOOLEAN hit;
 extern BOOLEAN explosion;
 

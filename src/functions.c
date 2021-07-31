@@ -45,6 +45,10 @@ void joyHandler(){
     case J_RIGHT:
         player.x += 16;
         break;
+    case J_B:
+        shield = TRUE;
+        set_sprite_prop(1, 2);
+        break;
     case J_START:
     //Pause game
         game_on = FALSE;

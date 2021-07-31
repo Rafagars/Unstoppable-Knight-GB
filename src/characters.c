@@ -69,7 +69,9 @@ UINT8 i;
 UINT8 spritesize = 8;
 UINT8 frame;
 UINT8 spriteID;
+UINT8 timer = 5;
 
+BOOLEAN shield = FALSE;
 BOOLEAN hit = FALSE;
 BOOLEAN explosion = FALSE;
 
@@ -82,6 +84,7 @@ UBYTE checkPlayerCollision(GameCharacter* character){
     return(player.x  + 2 >= character->x && player.x + 2 <= character->x + character->w) && (player.y + 2 >= character->y && player.y + 2 <= character->y + character->h) || (character->x >= player.x + 2 && character->x <= player.x + player.w - 2) && (character->y >= player.y + 2 && character->y <= player.y + player.h - 2);
 }
 
+//Avoid certain obstacles on top of another
 void checkObstacles(GameCharacter* one, GameCharacter* two){
     if(one->x == two->x && one->y - two->y < 16){
         if(one->x > 64 && one->x < 80){
@@ -174,7 +177,15 @@ void animations(){
         //Default Animation
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
-        set_sprite_tile(1, 1 + n);
+        if(shield == TRUE && timer > 1){
+            set_sprite_tile(1, 31);
+            timer--;
+        } else{
+            set_sprite_tile(1, 1 + n);
+            set_sprite_prop(1, 0);
+            timer = 5;
+            shield = FALSE;
+        }
         set_sprite_tile(3, 3 + n);
         performDelay(4);
     }
@@ -249,9 +260,11 @@ void positionArrow(){
         arrow.y -= 8;
         if(checkPlayerCollision(&arrow) == TRUE && hit == FALSE){
             arrow.health = 0;
-            player.health--;
-            hit = TRUE;
-            hitSound();
+            if(shield == FALSE){ 
+                player.health--;
+                hit = TRUE;
+                hitSound();
+            }
         } else if(arrow.y < 8){
             arrow.health = 0;
         }
@@ -341,9 +354,11 @@ void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
         if(checkPlayerCollision(&bombs) == TRUE && hit == FALSE){
-            player.health--;
-            hit = TRUE;
-            hitSound();
+            if(shield == FALSE){
+                player.health--;
+                hit = TRUE;
+                hitSound();
+            }
             explosion = TRUE;
         } else if(bombs.y < 2){
             bombs.health = 0;
