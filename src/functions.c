@@ -2,7 +2,7 @@
 
 BOOLEAN game_on = TRUE;
 
-uint16_t seed;
+uint16_t seed; //Seed for the randomize function
 
 void interruptLCD(){
     HIDE_WIN;
@@ -18,6 +18,7 @@ void turnOffSound(){
     NR52_REG = 0x00;
 }
 
+// Initialize all the default variables needed to start the game
 void init(){
     SHOW_WIN;
     SHOW_BKG;
@@ -46,8 +47,9 @@ void joyHandler(){
         player.x += 16;
         break;
     case J_B:
+        //Activates the shield
         shield = TRUE;
-        set_sprite_prop(1, 2);
+        set_sprite_prop(1, 2); //Shield palette
         break;
     case J_START:
     //Pause game
@@ -104,7 +106,7 @@ void coinSound(){
     NR14_REG = 0xC3;
 }
 
-////Creates a random number between 0 - n
+////Returns a random number between 0 - n
 UINT8 randomize(UINT8 n){
     seed = DIV_REG;
     initrand(seed);

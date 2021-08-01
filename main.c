@@ -42,20 +42,21 @@ void main(){
     gbt_play(song_Data, 2, 1);
     gbt_loop(1);
 
-    setupBackground();
-    set_win_tiles(0, 0, 20, 1, windowmap);
+    setupBackground(); // Set up the Background
+    set_win_tiles(0, 0, 20, 1, windowmap); // Set the tiles for the window layer
     move_win(7, 132); //Bottom of the screen
     set_sprite_data(0, 64, knight_sprites);
     set_sprite_palette(0, 6, &spritePalette[0]); //Load sprite's color palettes
+    // Set up the player's character and all the games obstacles
     setupPlayer();
     setupCoins();
     setupArrow();
     setupObstacles();
     setupBombs();
-    init();
+    //
+    init(); // Initialize all the default variables needed to start the game
 
     while(1){
-        SHOW_WIN;
         if(game_on == TRUE){
             scroll_bkg(0, 4); // Vertical Scroll
             joyHandler(); //Instructions for the controls

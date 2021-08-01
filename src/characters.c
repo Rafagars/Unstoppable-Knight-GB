@@ -79,7 +79,7 @@ UBYTE checkCollision(GameCharacter* one, GameCharacter* two){
     return(one->x >= two->x && one->x <= two->x + two->w) && (one->y >= two->y && one->y <= two->y + two->h) || (two->x >= one->x && two->x <= one->x + one->w) && (two->y >= one->y && two->y <= one->y + one->h);
 }
 
-// Give the player a smaller hitbox
+// Gives the player a smaller hitbox
 UBYTE checkPlayerCollision(GameCharacter* character){
     return(player.x  + 2 >= character->x && player.x + 2 <= character->x + character->w) && (player.y + 2 >= character->y && player.y + 2 <= character->y + character->h) || (character->x >= player.x + 2 && character->x <= player.x + player.w - 2) && (character->y >= player.y + 2 && character->y <= player.y + player.h - 2);
 }
@@ -178,10 +178,10 @@ void animations(){
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
         if(shield == TRUE && timer > 1){
-            set_sprite_tile(1, 31);
+            set_sprite_tile(1, 31); //Shield sprite
             timer--;
         } else{
-            set_sprite_tile(1, 1 + n);
+            set_sprite_tile(1, 1 + n); //Default sprites
             set_sprite_prop(1, 0);
             timer = 5;
             shield = FALSE;
