@@ -2,7 +2,7 @@
 
 BOOLEAN game_on = TRUE;
 
-uint16_t seed; //Seed for the randomize function
+UINT16 seed; //Seed for the randomize function
 
 void interruptLCD(){
     HIDE_WIN;

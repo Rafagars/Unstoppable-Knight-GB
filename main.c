@@ -84,6 +84,7 @@ void main(){
                 game_on = TRUE;
                 setupBackground();
                 SHOW_SPRITES;
+                SHOW_WIN;
                 performDelay(10);
             }
         }

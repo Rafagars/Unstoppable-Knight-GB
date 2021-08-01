@@ -14,7 +14,7 @@ extern const unsigned char * song_Data[];
 
 extern BOOLEAN game_on;
 
-extern uint16_t seed;
+extern UINT16 seed;
 
 extern void interruptLCD();
 extern void turnOnSound();
