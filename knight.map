@@ -75,10 +75,10 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
      0000001B  l__INITIA |    0000001B  l__INITIA |    0000002C  l__HEADER
      00000030  l__HEADER |    0000003A  l__GSINIT |    00000045  l__BSS   
      0000006A  l__HOME   |    00000083  l__HEADER |    0000008D  l__DATA  
-     00000200  s__CODE   |    000009B9  l__BASE   |    00003F18  l__CODE  
-     00004118  s__HOME   |    00004182  s__BASE   |    00004B3B  s__CODE_0
-     00004B3B  s__INITIA |    00004B3B  s__LIT    |    00004B56  s__GSINIT
-     00004B90  s__GSFINA |    0000C000  _shadow_O |    0000C0A0  s__DATA  
+     00000200  s__CODE   |    000009B9  l__BASE   |    00003EDF  l__CODE  
+     000040DF  s__HOME   |    00004149  s__BASE   |    00004B02  s__CODE_0
+     00004B02  s__INITIA |    00004B02  s__LIT    |    00004B1D  s__GSINIT
+     00004B57  s__GSFINA |    0000C000  _shadow_O |    0000C0A0  s__DATA  
      0000C12D  s__BSS    |    0000C172  s__INITIA |    0000C18D  s__HEAP  
      0000E000  .STACK    |    0000FF80  .refresh_
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
@@ -86,43 +86,43 @@ Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000200    00003F18 =       16152. bytes (REL,CON)
+_CODE                  00000200    00003EDF =       16095. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000200  _knight_s |    00000241  _knight_s |    00000651  _main    
-     000007A3  _titlescr |    00001093  _titlescr |    000011FB  _interrup
-     00001202  _turnOnSo |    0000120F  _turnOffS |    00001213  _init    
-     00001242  _performD |    00001257  _joyHandl |    0000129C  _fadeOut 
-     000012E5  _fadeIn   |    00001321  _resetBac |    00001334  _hitSound
-     00001348  _coinSoun |    0000135D  _randomiz |    0000137D  _gameOver
-     000013F8  _checkCol |    00001590  _spritePa |    000015C0  _backgrou
-     000015E0  _checkPla |    000017B2  _checkObs |    00001839  _moveChar
-     000018BD  _setupPla |    00001910  _animatio |    00001C0D  _setupCoi
-     00001D0F  _position |    00001EDA  _setupArr |    00001F44  _position
-     00001FCE  _setupObs |    000021D8  _position |    000022CC  _setupBom
-     00002354  _position |    000023E2  _setupBac |    00002417  _updateCo
-     00002467  _updateHe |    000024AD  _updateSc |    000024DD  _Knight_t
-     000024EA  _Knight_t |    000025BA  _ForestBG |    0000283A  _ForestBG
-     00002ABA  _GameOver |    00002C22  _song0    |    00002D55  _song1   
-     00002E7F  _song2    |    00002FAD  _song3    |    000030D7  _song4   
-     00003203  _song5    |    00003317  _song6    |    0000343E  _song7   
-     00003562  _song8    |    0000368B  _song_Dat |    000036A3  gbt_get_p
-     000036C0  _gbt_play |    0000377B  _gbt_paus |    0000378C  _gbt_loop
-     00003793  _gbt_stop |    0000379E  _gbt_enab |    000037A5  _gbt_upda
-     000039D6  gbt_chann |    00003B2C  gbt_chann |    00003C7E  gbt_chann
-     00003DEF  gbt_chann |    00003EEF  gbt_updat |    00003F0B  gbt_updat
-     00003F28  _putchar  |    00003F31  _setchar  |    00003F3A  _gotoxy  
-     00003F45  _posx     |    00003F56  _posy     |    00003F67  _rand    
-     00003F67  _randw    |    00003F92  __divsuch |    00003F9F  __modsuch
-     00003FA9  __divusch |    00003FBB  __modusch |    00003FCB  __divscha
-     00003FD7  __modscha |    00003FE1  __divsint |    00003FF2  __modsint
-     00004001  __divucha |    0000400D  __moducha |    00004017  __divuint
-     00004028  __moduint |    00004037  .div8     |    00004037  .mod8    
-     0000403F  .div16    |    0000403F  .mod16    |    00004075  .divu8   
-     00004075  .modu8    |    00004078  .divu16   |    00004078  .modu16  
-     000040B9  _set_spri |    000040BE  _set_bkg_ |    000040C1  .set_pale
-     000040DD  _cpu_slow |    000040F8  _cpu_fast |    000040FF  _cgb_comp
+     000007A6  _titlescr |    00001096  _titlescr |    000011FE  _interrup
+     00001205  _turnOnSo |    00001212  _turnOffS |    00001216  _init    
+     00001245  _performD |    0000125A  _joyHandl |    0000129F  _fadeOut 
+     000012E8  _resetBac |    000012FB  _hitSound |    0000130F  _coinSoun
+     00001324  _randomiz |    00001344  _gameOver |    000013BF  _checkCol
+     00001557  _spritePa |    00001587  _backgrou |    000015A7  _checkPla
+     00001779  _checkObs |    00001800  _moveChar |    00001884  _setupPla
+     000018D7  _animatio |    00001BD4  _setupCoi |    00001CD6  _position
+     00001EA1  _setupArr |    00001F0B  _position |    00001F95  _setupObs
+     0000219F  _position |    00002293  _setupBom |    0000231B  _position
+     000023A9  _setupBac |    000023DE  _updateCo |    0000242E  _updateHe
+     00002474  _updateSc |    000024A4  _Knight_t |    000024B1  _Knight_t
+     00002581  _ForestBG |    00002801  _ForestBG |    00002A81  _GameOver
+     00002BE9  _song0    |    00002D1C  _song1    |    00002E46  _song2   
+     00002F74  _song3    |    0000309E  _song4    |    000031CA  _song5   
+     000032DE  _song6    |    00003405  _song7    |    00003529  _song8   
+     00003652  _song_Dat |    0000366A  gbt_get_p |    00003687  _gbt_play
+     00003742  _gbt_paus |    00003753  _gbt_loop |    0000375A  _gbt_stop
+     00003765  _gbt_enab |    0000376C  _gbt_upda |    0000399D  gbt_chann
+     00003AF3  gbt_chann |    00003C45  gbt_chann |    00003DB6  gbt_chann
+     00003EB6  gbt_updat |    00003ED2  gbt_updat |    00003EEF  _putchar 
+     00003EF8  _setchar  |    00003F01  _gotoxy   |    00003F0C  _posx    
+     00003F1D  _posy     |    00003F2E  _rand     |    00003F2E  _randw   
+     00003F59  __divsuch |    00003F66  __modsuch |    00003F70  __divusch
+     00003F82  __modusch |    00003F92  __divscha |    00003F9E  __modscha
+     00003FA8  __divsint |    00003FB9  __modsint |    00003FC8  __divucha
+     00003FD4  __moducha |    00003FDE  __divuint |    00003FEF  __moduint
+     00003FFE  .div8     |    00003FFE  .mod8     |    00004006  .div16   
+     00004006  .mod16    |    0000403C  .divu8    |    0000403C  .modu8   
+     0000403F  .divu16   |    0000403F  .modu16   |    00004080  _set_spri
+     00004085  _set_bkg_ |    00004088  .set_pale |    000040A4  _cpu_slow
+     000040BF  _cpu_fast |    000040C6  _cgb_comp
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -297,45 +297,45 @@ Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_HOME                  00004118    0000006A =         106. bytes (REL,CON)
+_HOME                  000040DF    0000006A =         106. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00004118  .remove_V |    0000411B  .remove_i |    00004138  .add_VBL 
-     0000413B  .add_int  |    00004146  .wait_vbl |    00004146  _wait_vbl
-     00004155  .display_ |    00004155  _display_ |    0000416C  _remove_V
-     00004177  _add_VBL 
+     000040DF  .remove_V |    000040E2  .remove_i |    000040FF  .add_VBL 
+     00004102  .add_int  |    0000410D  .wait_vbl |    0000410D  _wait_vbl
+     0000411C  .display_ |    0000411C  _display_ |    00004133  _remove_V
+     0000413E  _add_VBL 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_BASE                  00004182    000009B9 =        2489. bytes (REL,CON)
+_BASE                  00004149    000009B9 =        2489. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00004182  _font_loa |    00004189  font_copy |    000041BF  font_copy
-     0000420E  font_load |    00004256  font_copy |    0000429E  font_set 
-     000042AB  .put_char |    000042C3  .out_char |    000042C9  .del_char
-     0000431F  _font_loa |    0000432D  _font_set |    0000433C  _font_ini
-     0000435C  .cls      |    0000435C  _cls      |    0000438E  .cr_curs 
-     000043A3  .adv_curs |    000043FF  .tmode    |    00004428  .tmode_ou
-     00004438  _initrand |    0000443A  .initrand |    00004443  .padup   
-     00004443  _waitpadu |    00004453  .jpad     |    00004453  _joypad  
-     0000447B  _waitpad  |    0000447E  .wait_pad |    00004485  _set_spri
-     0000448A  _set_bkg_ |    0000448D  .set_pale |    000044AC  _set_win_
-     000044C0  _set_tile |    000044C5  _set_bkg_ |    000044C5  _set_win_
-     000044CD  _set_spri |    000044FD  _color    |    0000450C  .drawing_
-     00004517  .drawing_ |    00004553  _add_LCD  |    0000455E  .add_LCD 
-     00004564  _remove_L |    0000456F  .remove_L |    00004575  _font_ibm
-     00004927  _font_min |    00004AD1  _set_bkg_ |    00004AE5  .set_xy_w
-     00004AEE  .set_xy_b |    00004AFD  .set_xy_t
+     00004149  _font_loa |    00004150  font_copy |    00004186  font_copy
+     000041D5  font_load |    0000421D  font_copy |    00004265  font_set 
+     00004272  .put_char |    0000428A  .out_char |    00004290  .del_char
+     000042E6  _font_loa |    000042F4  _font_set |    00004303  _font_ini
+     00004323  .cls      |    00004323  _cls      |    00004355  .cr_curs 
+     0000436A  .adv_curs |    000043C6  .tmode    |    000043EF  .tmode_ou
+     000043FF  _initrand |    00004401  .initrand |    0000440A  .padup   
+     0000440A  _waitpadu |    0000441A  .jpad     |    0000441A  _joypad  
+     00004442  _waitpad  |    00004445  .wait_pad |    0000444C  _set_spri
+     00004451  _set_bkg_ |    00004454  .set_pale |    00004473  _set_win_
+     00004487  _set_tile |    0000448C  _set_bkg_ |    0000448C  _set_win_
+     00004494  _set_spri |    000044C4  _color    |    000044D3  .drawing_
+     000044DE  .drawing_ |    0000451A  _add_LCD  |    00004525  .add_LCD 
+     0000452B  _remove_L |    00004536  .remove_L |    0000453C  _font_ibm
+     000048EE  _font_min |    00004A98  _set_bkg_ |    00004AAC  .set_xy_w
+     00004AB5  .set_xy_b |    00004AC4  .set_xy_t
 ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_INITIALIZER           00004B3B    0000001B =          27. bytes (REL,CON)
+_INITIALIZER           00004B02    0000001B =          27. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
@@ -344,17 +344,17 @@ Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_GSINIT                00004B56    0000003A =          58. bytes (REL,CON)
+_GSINIT                00004B1D    0000003A =          58. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00004B56  gsinit   
+     00004B1D  gsinit   
 ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_GSFINAL               00004B90    00000001 =           1. bytes (REL,CON)
+_GSFINAL               00004B57    00000001 =           1. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    

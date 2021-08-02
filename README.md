@@ -7,6 +7,8 @@ You play as a knight that will try to collect all the coins in the forest not ma
 ### Controls
 Left/Right Button - for Left & Right movement
 
+B button - Shield
+
 START button - Pause the game
 
 Song: An edited version of Twilight Drive from GB-Studio-Community-Assets's music folder https://github.com/DeerTears/GB-Studio-Community-Assets/tree/master/Music
