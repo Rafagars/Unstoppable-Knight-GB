@@ -390,3 +390,12 @@ void setupBackground(){
 
     set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN0);
 }
+
+void setupCharacters(){
+    // Set up the player's character and all the games obstacles
+    setupPlayer();
+    setupCoins();
+    setupArrow();
+    setupObstacles();
+    setupBombs();
+}

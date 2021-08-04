@@ -115,8 +115,9 @@ UINT8 randomize(UINT8 n){
 
 void gameOverScreen(){
     resetBackground();
-    HIDE_WIN;
+    interruptLCD(); //Hide Window layer
     gbt_stop();
+    turnOffSound();
     set_bkg_data(37, 13, Knight_tiles);
     set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
     game_on = FALSE;
@@ -129,11 +130,7 @@ void gameOverScreen(){
     windowmap[8] = 0x01;
     windowmap[13] = 0x01;
     windowmap[14] = 0x01;
-    setupPlayer();
-    setupCoins();
-    setupArrow();
-    setupObstacles();
-    setupBombs();
+    setupCharacters();
     gbt_play(song_Data, 2, 2);
     gbt_loop(1);
 }

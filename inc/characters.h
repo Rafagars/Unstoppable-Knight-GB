@@ -35,5 +35,6 @@ extern void positionObstacles();
 extern void setupBombs();
 extern void positionBombs();
 extern void setupBackground();
+extern void setupCharacters();
 
 #endif
