@@ -78,6 +78,7 @@ void main(){
                 //Restart game
                 game_on = TRUE;
                 setupBackground();
+                gbt_pause(1);
                 init();
                 performDelay(10);
             }

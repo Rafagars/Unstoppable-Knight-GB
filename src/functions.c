@@ -9,7 +9,7 @@ void interruptLCD(){
 }
 
 void turnOnSound(){
-    NR52_REG = 0x8F; //Turn on the sound
+    NR52_REG = 0x80; //Turn on the sound
     NR51_REG = 0x11; //Enable the sound channels
     NR50_REG = 0x77; //Increase the volume to its max()
 }
@@ -52,8 +52,10 @@ void joyHandler(){
         set_sprite_prop(1, 2); //Shield palette
         break;
     case J_START:
-    //Pause game
+        //Pause game
         game_on = FALSE;
+        gbt_pause(0);
+        turnOffSound();
         performDelay(10);
         break;
     default:
