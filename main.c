@@ -42,7 +42,11 @@ void main(){
     gbt_play(song_Data, 2, 1);
     gbt_loop(1);
 
-    
+    if(_cpu == CGB_TYPE){
+        VBK_REG = 1;
+        set_win_tiles(0, 0, 20, 1, windowpalette); // Set window color palette
+        VBK_REG = 0;
+    }
     set_win_tiles(0, 0, 20, 1, windowmap); // Set the tiles for the window layer
     move_win(7, 132); //Bottom of the screen
     set_sprite_data(0, 64, knight_sprites);

@@ -59,13 +59,13 @@
 #define Knight_tilesCGBPal0c3 5344
 
 /* Gameboy Color palette 1 */
-#define Knight_tilesCGBPal1c0 23454
-#define Knight_tilesCGBPal1c1 12272
-#define Knight_tilesCGBPal1c2 6596
-#define Knight_tilesCGBPal1c3 5344
+#define Knight_tilesCGBPal1c0 30687
+#define Knight_tilesCGBPal1c1 15326
+#define Knight_tilesCGBPal1c2 825
+#define Knight_tilesCGBPal1c3 0
 
 /* Gameboy Color palette 2 */
-#define Knight_tilesCGBPal2c0 18078
+#define Knight_tilesCGBPal2c0 32767
 #define Knight_tilesCGBPal2c1 95
 #define Knight_tilesCGBPal2c2 113
 #define Knight_tilesCGBPal2c3 1

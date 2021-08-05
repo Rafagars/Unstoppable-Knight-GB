@@ -66,7 +66,7 @@ const UWORD backgroundPalette[] = {
 
 
 uint8_t i;
-uint8_t spritesize = 8;
+const uint8_t spritesize = 8;
 uint8_t frame;
 uint8_t spriteID;
 uint8_t timer = 5;

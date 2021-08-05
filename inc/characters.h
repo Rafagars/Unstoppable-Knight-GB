@@ -12,7 +12,7 @@ extern const UWORD spritePalette[];
 extern const UWORD backgroundPalette[];
 
 extern uint8_t i;
-extern uint8_t spritesize;
+extern const uint8_t spritesize;
 extern uint8_t frame;
 extern uint8_t spriteID;
 extern uint8_t timer;

@@ -7,6 +7,8 @@ extern uint8_t swap;
 
 extern unsigned char windowmap[];
 
+extern unsigned char windowpalette[];
+
 extern void updateCoinsCounter();
 
 extern void updateHealth();
