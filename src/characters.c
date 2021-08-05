@@ -193,50 +193,56 @@ void animations(){
 }
 
 void setupCoins(){
+    GameCharacter* coin = coins;
     for(i = 0; i < 3; i++){
-        coins[i].x = 16*randomize(5) + 48;
-        coins[i].y = player.y + 120 + 16*i;
-        coins[i].h = 8;
-        coins[i].w = 8;
-        coins[i].health = 1;
+        coin->x = 16*randomize(5) + 48;
+        coin->y = player.y + 120 + 16*i;
+        coin->h = 8;
+        coin->w = 8;
+        coin->health = 1;
 
         spriteID = 4 + i;
         //load coin's sprite
         set_sprite_tile(spriteID, 12);
         set_sprite_prop(spriteID, 1);
-        coins[i].spriteID[0] = spriteID;
+        coin->spriteID[0] = spriteID;
 
-        move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
+        move_sprite(coin->spriteID[0], coin->x, coin->y);
+        coin++;
+        GameCharacter* coin = &coins[i];
     }
 }
 
 void positionCoins(){
+    GameCharacter* coin = coins;
     for(i = 0; i < 3; i++){
-        if(coins[i].health > 0){
-            coins[i].y -= 4;
+        if(coin->health > 0){
+            coin->y -= 4;
             if(checkCollision(&player, &coins[i]) == TRUE ){
-                coins[i].health = 0;
+                coin->health = 0;
                 coinSound();
                 updateCoinsCounter();
                 updateScore();
-            } else if(coins[i].y < 8){
-                coins[i].health = 0;
+            } else if(coin->y < 8){
+                coin->health = 0;
             }
         } else {
-            coins[i].x = 16*randomize(5) + 48;
-            coins[i].y = player.y + 120 + 16*i;  
-            coins[i].health = 1;
+            coin->x = 16*randomize(5) + 48;
+            coin->y = player.y + 120 + 16*i;  
+            coin->health = 1;
 
             //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
             
             if(checkCollision(&coins[i], &obstacles[0]) == TRUE || checkCollision(&coins[i], &bombs) == TRUE || checkCollision(&coins[i], &coins[i+1]) == TRUE){
-                coins[i].x = 16*randomize(5) + 48;
-                coins[i].y = player.y + 120 + 16*i; 
+                coin->x = 16*randomize(5) + 48;
+                coin->y = player.y + 120 + 16*i; 
             }
             
             //
         }
-        move_sprite(coins[i].spriteID[0], coins[i].x, coins[i].y);
+        move_sprite(coin->spriteID[0], coin->x, coin->y);
+        coin++;
+        GameCharacter* coin = &coins[i];
     }
 }
 
@@ -277,51 +283,57 @@ void positionArrow(){
 }
 
 void setupObstacles(){
+    GameCharacter* obstacle = obstacles;
     spriteID += 1;
     for(i = 0; i < 2; i++){
-        obstacles[i].x = 16*randomize(4) + 64;
-        obstacles[i].y = player.y + 120;
-        obstacles[i].w = 16;
-        obstacles[i].h = 16;
-        obstacles[i].health = 1;
+        obstacle->x = 16*randomize(4) + 64;
+        obstacle->y = player.y + 120;
+        obstacle->w = 16;
+        obstacle->h = 16;
+        obstacle->health = 1;
 
         uint8_t n = (4*i + i);
         //load obstacles's sprites
         set_sprite_tile(spriteID + n, 15 + n);
         set_sprite_prop(spriteID + n, 3 + i);
-        obstacles[i].spriteID[0] = spriteID + n;
+        obstacle->spriteID[0] = spriteID + n;
         set_sprite_tile(spriteID + n + 1 , 16 + n);
         set_sprite_prop(spriteID + n + 1, 3 + i);
-        obstacles[i].spriteID[2] = spriteID + n + 1;
+        obstacle->spriteID[2] = spriteID + n + 1;
         set_sprite_tile(spriteID + n + 2, 17 + n);
         set_sprite_prop(spriteID + n + 2, 3 + i);
-        obstacles[i].spriteID[1] = spriteID + n + 2;
+        obstacle->spriteID[1] = spriteID + n + 2;
         set_sprite_tile(spriteID + n + 3, 18 + n);
         set_sprite_prop(spriteID + n + 3, 3 + i);
-        obstacles[i].spriteID[3] = spriteID + n + 3;
+        obstacle->spriteID[3] = spriteID + n + 3;
 
-        moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y); 
+        moveCharacter(obstacle, obstacle->x, obstacle->y);
+        obstacle++;
+        GameCharacter* obstacle = &obstacles[i];
     }   
 }
 
 void positionObstacles(){
+    GameCharacter* obstacle = obstacles;
     for(i = 0; i < 2; i++){
-        if(obstacles[i].health > 0){
-            obstacles[i].y -= 4 + 2*i;
-            if(obstacles[i].y < 4){
-                obstacles[i].health = 0;
+        if(obstacle->health > 0){
+            obstacle->y -= 4 + 2*i;
+            if(obstacle->y < 4){
+                obstacle->health = 0;
             }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
                 hitSound();
             }
         } else {
-            obstacles[i].x = 16*randomize(4) + 64;
-            obstacles[i].y = player.y + 120;
-            obstacles[i].health = 1;
+            obstacle->x = 16*randomize(4) + 64;
+            obstacle->y = player.y + 120;
+            obstacle->health = 1;
             checkObstacles(&obstacles[0], &obstacles[1]);
         }
-        moveCharacter(&obstacles[i], obstacles[i].x, obstacles[i].y);
+        moveCharacter(&obstacles[i], obstacle->x, obstacle->y);
+        obstacle++;
+        GameCharacter* obstacle = &obstacles[i];
     }
 }
 
