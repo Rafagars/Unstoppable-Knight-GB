@@ -65,11 +65,11 @@ const UWORD backgroundPalette[] = {
 };
 
 
-UINT8 i;
-UINT8 spritesize = 8;
-UINT8 frame;
-UINT8 spriteID;
-UINT8 timer = 5;
+uint8_t i;
+uint8_t spritesize = 8;
+uint8_t frame;
+uint8_t spriteID;
+uint8_t timer = 5;
 
 BOOLEAN shield = FALSE;
 BOOLEAN hit = FALSE;
@@ -95,7 +95,7 @@ void checkObstacles(GameCharacter* one, GameCharacter* two){
     }
 }
 
-void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y){
+void moveCharacter(GameCharacter* character, uint8_t x, uint8_t y){
     move_sprite(character->spriteID[0], x, y);
     move_sprite(character->spriteID[1], x + spritesize, y);
     move_sprite(character->spriteID[2], x, y + spritesize);
@@ -123,7 +123,7 @@ void setupPlayer(){
 }
 
 void animations(){
-    UINT8 n = 3*frame + frame;
+    uint8_t n = 3*frame + frame;
 
     //Orc Animation
     set_sprite_tile(obstacles[1].spriteID[0], 19 + n);
@@ -285,7 +285,7 @@ void setupObstacles(){
         obstacles[i].h = 16;
         obstacles[i].health = 1;
 
-        UINT8 n = (4*i + i);
+        uint8_t n = (4*i + i);
         //load obstacles's sprites
         set_sprite_tile(spriteID + n, 15 + n);
         set_sprite_prop(spriteID + n, 3 + i);

@@ -2,7 +2,7 @@
 
 BOOLEAN game_on = TRUE;
 
-UINT16 seed; //Seed for the randomize function
+uint16_t seed; //Seed for the randomize function
 
 void interruptLCD(){
     HIDE_WIN;
@@ -31,7 +31,7 @@ void init(){
     set_interrupts(VBL_IFLAG | LCD_IFLAG);
 }
 
-void performDelay(UINT8 numloops){
+void performDelay(uint8_t numloops){
     for(i = 0; i < numloops; i++){
         wait_vbl_done();
     }
@@ -109,7 +109,7 @@ void coinSound(){
 }
 
 ////Returns a random number between 0 - n
-UINT8 randomize(UINT8 n){
+uint8_t randomize(uint8_t n){
     seed = DIV_REG;
     initrand(seed);
     return rand() % n;

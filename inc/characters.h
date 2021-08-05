@@ -1,6 +1,7 @@
 #ifndef _CHARACTERS_H
 #define _CHARACTERS_H
 
+#include <stdint.h>
 #include "functions.h"
 #include "gameCharacter.h"
 #include "knight_sprites.h"
@@ -10,11 +11,11 @@
 extern const UWORD spritePalette[];
 extern const UWORD backgroundPalette[];
 
-extern UINT8 i;
-extern UINT8 spritesize;
-extern UINT8 frame;
-extern UINT8 spriteID;
-extern UINT8 timer;
+extern uint8_t i;
+extern uint8_t spritesize;
+extern uint8_t frame;
+extern uint8_t spriteID;
+extern uint8_t timer;
 
 extern BOOLEAN shield;
 extern BOOLEAN hit;
@@ -23,7 +24,7 @@ extern BOOLEAN explosion;
 extern UBYTE checkCollision(GameCharacter* one, GameCharacter* two);
 extern UBYTE checkPlayerCollision(GameCharacter* character);
 extern void checkObstacles(GameCharacter* one, GameCharacter* two);
-extern void moveCharacter(GameCharacter* character, UINT8 x, UINT8 y);
+extern void moveCharacter(GameCharacter* character, uint8_t x, uint8_t y);
 extern void setupPlayer();
 extern void animations();
 extern void setupCoins();

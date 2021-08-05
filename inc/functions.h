@@ -2,6 +2,7 @@
 #define _FUNCTIONS_H
 
 #include <gb/gb.h>
+#include <stdint.h>
 #include <rand.h>
 #include "../audio/gbt_player.h"
 #include "gameCharacter.h"
@@ -14,13 +15,13 @@ extern const unsigned char * song_Data[];
 
 extern BOOLEAN game_on;
 
-extern UINT16 seed;
+extern uint16_t seed;
 
 extern void interruptLCD();
 extern void turnOnSound();
 extern void turnOffSound();
 extern void init();
-extern void performDelay(UINT8 numloops);
+extern void performDelay(uint8_t numloops);
 
 extern void joyHandler();
 
@@ -31,7 +32,7 @@ extern void resetBackground();
 
 extern void hitSound();
 extern void coinSound();
-extern UINT8 randomize(UINT8 n);
+extern uint8_t randomize(uint8_t n);
 extern void gameOverScreen();
 
 #endif

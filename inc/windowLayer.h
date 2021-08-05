@@ -3,7 +3,7 @@
 
 #include "functions.h"
 
-extern UINT8 swap;
+extern uint8_t swap;
 
 extern unsigned char windowmap[];
 

@@ -2,14 +2,15 @@
 #define _GAMECHARACTER_H
 
 #include <gb/gb.h>
+#include <stdint.h>
 
 typedef struct GameCharacter{
-    UINT8 spriteID[4];
-    UINT8 x;
-    UINT8 y;
-    UINT8 w;
-    UINT8 h;
-    UINT8 health;
+    uint8_t spriteID[4];
+    uint8_t x;
+    uint8_t y;
+    uint8_t w;
+    uint8_t h;
+    uint8_t health;
 } GameCharacter;
 
 extern GameCharacter player;
