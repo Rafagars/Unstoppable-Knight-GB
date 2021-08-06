@@ -64,7 +64,6 @@ const UWORD backgroundPalette[] = {
     Knight_tilesCGBPal3c3,
 };
 
-
 uint8_t i;
 const uint8_t spritesize = 8;
 uint8_t frame;
@@ -230,15 +229,6 @@ void positionCoins(){
             coin->x = 16*randomize(5) + 48;
             coin->y = player.y + 120 + 16*i;  
             coin->health = 1;
-
-            //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
-            
-            if(checkCollision(coin, &obstacles[0]) == TRUE || checkCollision(coin, &bombs) == TRUE || checkCollision(coin, &coins[i+1]) == TRUE){
-                coin->x = 16*randomize(5) + 48;
-                coin->y = player.y + 120 + 16*i; 
-            }
-            
-            //
         }
         move_sprite(coin->spriteID[0], coin->x, coin->y);
         coin++;

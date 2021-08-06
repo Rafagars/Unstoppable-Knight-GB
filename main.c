@@ -82,9 +82,17 @@ void main(){
             if(joypad() & J_START){
                 //Restart game
                 game_on = TRUE;
-                setupBackground();
-                gbt_pause(1);
-                init();
+                if(paused == TRUE){
+                    gbt_pause(1);
+                    turnOnSound();
+                    paused = FALSE;
+                } else {
+                    setupBackground();
+                    //Restart background music
+                    gbt_play(song_Data, 2, 1);
+                    gbt_loop(1);
+                    init();
+                }
                 performDelay(10);
             }
         }

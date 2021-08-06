@@ -1,6 +1,7 @@
 #include "../inc/functions.h"
 
 BOOLEAN game_on = TRUE;
+BOOLEAN paused = FALSE;
 
 uint16_t seed; //Seed for the randomize function
 
@@ -54,6 +55,7 @@ void joyHandler(){
     case J_START:
         //Pause game
         game_on = FALSE;
+        paused = !paused;
         gbt_pause(0);
         turnOffSound();
         performDelay(10);
@@ -138,6 +140,4 @@ void gameOverScreen(){
     windowmap[13] = 0x01;
     windowmap[14] = 0x01;
     setupCharacters();
-    gbt_play(song_Data, 2, 2);
-    gbt_loop(1);
 }
