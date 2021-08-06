@@ -194,7 +194,7 @@ void animations(){
 
 void setupCoins(){
     GameCharacter* coin = coins;
-    for(i = 0; i < 3; i++){
+    for(i = 0; i < 4; i++){
         coin->x = 16*randomize(5) + 48;
         coin->y = player.y + 120 + 16*i;
         coin->h = 8;
@@ -215,10 +215,10 @@ void setupCoins(){
 
 void positionCoins(){
     GameCharacter* coin = coins;
-    for(i = 0; i < 3; i++){
+    for(i = 0; i < 4; i++){
         if(coin->health > 0){
             coin->y -= 4;
-            if(checkCollision(&player, &coins[i]) == TRUE ){
+            if(checkCollision(&player, coin) == TRUE ){
                 coin->health = 0;
                 coinSound();
                 updateCoinsCounter();
@@ -233,7 +233,7 @@ void positionCoins(){
 
             //Not exactly sure if this part of the code do something or not. Sometimes it looks like it does, sometimes don't
             
-            if(checkCollision(&coins[i], &obstacles[0]) == TRUE || checkCollision(&coins[i], &bombs) == TRUE || checkCollision(&coins[i], &coins[i+1]) == TRUE){
+            if(checkCollision(coin, &obstacles[0]) == TRUE || checkCollision(coin, &bombs) == TRUE || checkCollision(coin, &coins[i+1]) == TRUE){
                 coin->x = 16*randomize(5) + 48;
                 coin->y = player.y + 120 + 16*i; 
             }
@@ -320,7 +320,7 @@ void positionObstacles(){
             obstacle->y -= 4 + 2*i;
             if(obstacle->y < 4){
                 obstacle->health = 0;
-            }else if(checkPlayerCollision(&obstacles[i]) == TRUE && hit == FALSE){
+            }else if(checkPlayerCollision(obstacle) == TRUE && hit == FALSE){
                 player.health--;
                 hit = TRUE;
                 hitSound();
@@ -329,9 +329,9 @@ void positionObstacles(){
             obstacle->x = 16*randomize(4) + 64;
             obstacle->y = player.y + 120;
             obstacle->health = 1;
-            checkObstacles(&obstacles[0], &obstacles[1]);
+            checkObstacles(&obstacles[0], &obstacles[1]); // The orc(obstacle 1) should avoid the pit too
         }
-        moveCharacter(&obstacles[i], obstacle->x, obstacle->y);
+        moveCharacter(obstacle, obstacle->x, obstacle->y);
         obstacle++;
         GameCharacter* obstacle = &obstacles[i];
     }
@@ -344,20 +344,20 @@ void setupBombs(){
     bombs.w = 16;
     bombs.health = 1;
 
-    set_sprite_tile(17 , 32);
-    set_sprite_prop(17, 0);
-    bombs.spriteID[0] = 17;
-    set_sprite_tile(18, 33);
-    set_sprite_prop(18, 0);
-    bombs.spriteID[2] = 18;
+    set_sprite_tile(18 , 32);
+    set_sprite_prop(18, 3);
+    bombs.spriteID[0] = 18;
     set_sprite_tile(19, 33);
-    set_sprite_prop(19, 0);
-    bombs.spriteID[1] = 19;
-    set_sprite_tile(20, 34);
-    set_sprite_prop(20, 0);
-    bombs.spriteID[3] = 20;
+    set_sprite_prop(19, 3);
+    bombs.spriteID[2] = 19;
+    set_sprite_tile(20, 33);
+    set_sprite_prop(20, 3);
+    bombs.spriteID[1] = 20;
+    set_sprite_tile(21, 34);
+    set_sprite_prop(21, 3);
+    bombs.spriteID[3] = 21;
 
-    checkObstacles(&obstacles[0], &bombs);
+    checkObstacles(&obstacles[0], &bombs); // We don't want bombs over the pits 
 
     moveCharacter(&bombs, bombs.x, bombs.y); 
 }
@@ -366,12 +366,12 @@ void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
         if(checkPlayerCollision(&bombs) == TRUE && hit == FALSE){
+            explosion = TRUE;
             if(shield == FALSE){
                 player.health--;
                 hit = TRUE;
                 hitSound();
             }
-            explosion = TRUE;
         } else if(bombs.y < 2){
             bombs.health = 0;
             explosion = FALSE;
@@ -381,7 +381,7 @@ void positionBombs(){
         bombs.y = player.y + 120;
         bombs.health = 1;
         
-        checkObstacles(&obstacles[0], &bombs);
+        checkObstacles(&obstacles[0], &bombs); // We don't want bombs over the pits 
     }
     moveCharacter(&bombs, bombs.x, bombs.y);
 

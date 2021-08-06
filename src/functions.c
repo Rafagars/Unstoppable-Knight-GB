@@ -121,7 +121,12 @@ void gameOverScreen(){
     gbt_stop();
     turnOffSound();
     set_bkg_data(37, 13, Knight_tiles);
-    set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOver);
+    if(_cpu == CGB_TYPE){
+        VBK_REG = 1;
+        set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN1);
+        VBK_REG = 0;
+    }
+    set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN0);
     game_on = FALSE;
     //Restart everything to its default values
     hit = FALSE;

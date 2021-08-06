@@ -53,10 +53,10 @@
 #define knight_spritesSGBPal3c3 5344
 
 /* Gameboy Color palette 0 */
-#define knight_spritesCGBPal0c0 31507
+#define knight_spritesCGBPal0c0 31642
 #define knight_spritesCGBPal0c1 32365
 #define knight_spritesCGBPal0c2 16609
-#define knight_spritesCGBPal0c3 11298
+#define knight_spritesCGBPal0c3 5185
 
 /* Gameboy Color palette 1 */
 #define knight_spritesCGBPal1c0 15326
@@ -77,10 +77,10 @@
 #define knight_spritesCGBPal3c3 0
 
 /* Gameboy Color palette 4 */
-#define knight_spritesCGBPal4c0 6076
+#define knight_spritesCGBPal4c0 31708
 #define knight_spritesCGBPal4c1 8935
 #define knight_spritesCGBPal4c2 6596
-#define knight_spritesCGBPal4c3 2209
+#define knight_spritesCGBPal4c3 1153
 
 /* Gameboy Color palette 5 */
 #define knight_spritesCGBPal5c0 27550

@@ -15,7 +15,7 @@ typedef struct GameCharacter{
 
 extern GameCharacter player;
 
-extern GameCharacter coins[3];
+extern GameCharacter coins[4];
 
 extern GameCharacter arrow;
 

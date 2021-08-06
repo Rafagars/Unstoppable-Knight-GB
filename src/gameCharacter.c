@@ -2,7 +2,7 @@
 
 GameCharacter player;
 
-GameCharacter coins[3];
+GameCharacter coins[4];
 
 GameCharacter arrow;
 

@@ -24,7 +24,8 @@
 #define GameOverHeight 18
 #define GameOverBank 0
 
-extern const unsigned char GameOver[];
+extern const unsigned char GameOverBGPLN0[];
+extern const unsigned char GameOverBGPLN1[];
 
 #endif
 
