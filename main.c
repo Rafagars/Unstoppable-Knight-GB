@@ -57,7 +57,7 @@ void main(){
     init(); // Initialize all the default variables needed to start the game
 
     while(1){
-        if(game_on == TRUE){
+        if(game_on){
             scroll_bkg(0, 4); // Vertical Scroll
             joyHandler(); //Instructions for the controls
             // Player's movement limits
@@ -82,7 +82,7 @@ void main(){
             if(joypad() & J_START){
                 //Restart game
                 game_on = TRUE;
-                if(paused == TRUE){
+                if(paused ){
                     gbt_pause(1);
                     turnOnSound();
                     paused = FALSE;

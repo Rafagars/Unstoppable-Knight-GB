@@ -135,7 +135,7 @@ void animations(){
     set_sprite_prop(obstacles[1].spriteID[3], S_PRIORITY | 4);
 
     //Bomb animation
-    if(explosion == FALSE){
+    if(!explosion){
         set_sprite_tile(bombs.spriteID[0], 32 + n);
         set_sprite_prop(bombs.spriteID[0], 0);
         set_sprite_tile(bombs.spriteID[2], 33 + n);
@@ -144,7 +144,7 @@ void animations(){
         set_sprite_prop(bombs.spriteID[1], 0);    
         set_sprite_tile(bombs.spriteID[3], 35 + n); 
         set_sprite_prop(bombs.spriteID[3], 0);    
-    } else{
+    } else {
         //Explosion animation
         set_sprite_tile(bombs.spriteID[0], 48 + n);
         set_sprite_prop(bombs.spriteID[0], 5);
@@ -160,7 +160,7 @@ void animations(){
         hit = FALSE;
     }
 
-    if(hit == TRUE){
+    if(hit){
         //Hit effect
         set_sprite_tile(0, 64);
         set_sprite_tile(2, 64);
@@ -176,10 +176,10 @@ void animations(){
         //Default Animation
         set_sprite_tile(0, 0 + n);
         set_sprite_tile(2, 2 + n);
-        if(shield == TRUE && timer > 1){
+        if(shield  && timer > 1){
             set_sprite_tile(1, 31); //Shield sprite
             timer--;
-        } else{
+        } else {
             set_sprite_tile(1, 1 + n); //Default sprites
             set_sprite_prop(1, 0);
             timer = 5;
@@ -217,7 +217,7 @@ void positionCoins(){
     for(i = 0; i < 4; i++){
         if(coin->health > 0){
             coin->y -= 4;
-            if(checkCollision(&player, coin) == TRUE ){
+            if(checkCollision(&player, coin)){
                 coin->health = 0;
                 coinSound();
                 updateCoinsCounter();
@@ -254,9 +254,9 @@ void setupArrow(){
 void positionArrow(){
     if(arrow.health > 0){
         arrow.y -= 8;
-        if(checkPlayerCollision(&arrow) == TRUE && hit == FALSE){
+        if(checkPlayerCollision(&arrow) && !hit){
             arrow.health = 0;
-            if(shield == FALSE){ 
+            if(!shield){ 
                 player.health--;
                 hit = TRUE;
                 hitSound();
@@ -310,7 +310,7 @@ void positionObstacles(){
             obstacle->y -= 4 + 2*i;
             if(obstacle->y < 4){
                 obstacle->health = 0;
-            }else if(checkPlayerCollision(obstacle) == TRUE && hit == FALSE){
+            }else if(checkPlayerCollision(obstacle) && !hit){
                 player.health--;
                 hit = TRUE;
                 hitSound();
@@ -355,9 +355,9 @@ void setupBombs(){
 void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
-        if(checkPlayerCollision(&bombs) == TRUE && hit == FALSE){
+        if(checkPlayerCollision(&bombs)  && !hit){
             explosion = TRUE;
-            if(shield == FALSE){
+            if(!shield){
                 player.health--;
                 hit = TRUE;
                 hitSound();
