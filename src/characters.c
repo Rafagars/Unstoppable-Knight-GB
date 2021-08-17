@@ -355,7 +355,7 @@ void setupBombs(){
 void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
-        if(checkPlayerCollision(&bombs)  && !hit){
+        if(checkPlayerCollision(&bombs) && !hit){
             explosion = TRUE;
             if(!shield){
                 player.health--;
@@ -374,7 +374,6 @@ void positionBombs(){
         checkObstacles(&obstacles[0], &bombs); // We don't want bombs over the pits 
     }
     moveCharacter(&bombs, bombs.x, bombs.y);
-
 }
 
 

@@ -119,16 +119,20 @@ uint8_t randomize(uint8_t n){
 
 void gameOverScreen(){
     resetBackground();
-    interruptLCD(); //Hide Window layer
+    HIDE_BKG;
+    SHOW_WIN;
     gbt_stop();
     turnOffSound();
-    set_bkg_data(37, 13, Knight_tiles);
+    move_win(7, 56);
     if(_cpu == CGB_TYPE){
         VBK_REG = 1;
-        set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN1);
+        set_win_tiles(0, 0, 20, 5, gameOverPalette); // Set window color palette
         VBK_REG = 0;
     }
-    set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN0);
+    gameOverMap[51] = windowmap[6];
+    gameOverMap[52] = windowmap[7];
+    gameOverMap[53] = windowmap[8];
+    set_win_tiles(0, 0, 20, 5, gameOverMap); // Set the game over message with the score
     game_on = FALSE;
     //Restart everything to its default values
     hit = FALSE;

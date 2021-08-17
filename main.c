@@ -57,7 +57,7 @@ void main(){
     init(); // Initialize all the default variables needed to start the game
 
     while(1){
-        if(game_on){
+        if(game_on){ //If game_on equal TRUE
             scroll_bkg(0, 4); // Vertical Scroll
             joyHandler(); //Instructions for the controls
             // Player's movement limits
@@ -82,12 +82,19 @@ void main(){
             if(joypad() & J_START){
                 //Restart game
                 game_on = TRUE;
-                if(paused ){
+                if(paused){
                     gbt_pause(1);
                     turnOnSound();
                     paused = FALSE;
                 } else {
                     setupBackground();
+                    move_win(7, 132);
+                    if(_cpu == CGB_TYPE){
+                        VBK_REG = 1;
+                        set_win_tiles(0, 0, 20, 1, windowpalette); // Set window color palette
+                        VBK_REG = 0;
+                    }
+                    set_win_tiles(0, 0, 20, 1, windowmap); // Set the tiles for the window layer
                     //Restart background music
                     gbt_play(song_Data, 2, 1);
                     gbt_loop(1);

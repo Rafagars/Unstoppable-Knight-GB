@@ -8,7 +8,6 @@
 #include "gameCharacter.h"
 #include "characters.h"
 #include "windowLayer.h"
-#include "GameOverBackground.h"
 
 
 extern const unsigned char * song_Data[];
