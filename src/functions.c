@@ -119,20 +119,19 @@ uint8_t randomize(uint8_t n){
 
 void gameOverScreen(){
     resetBackground();
-    HIDE_BKG;
     SHOW_WIN;
     gbt_stop();
     turnOffSound();
-    move_win(7, 56);
+    move_win(7, 0);
     if(_cpu == CGB_TYPE){
         VBK_REG = 1;
-        set_win_tiles(0, 0, 20, 5, gameOverPalette); // Set window color palette
+        set_win_tiles(0, 0, 20, 11, gameOverPalette); // Set window color palette
         VBK_REG = 0;
     }
-    gameOverMap[51] = windowmap[6];
-    gameOverMap[52] = windowmap[7];
-    gameOverMap[53] = windowmap[8];
-    set_win_tiles(0, 0, 20, 5, gameOverMap); // Set the game over message with the score
+    gameOverMap[151] = windowmap[6];
+    gameOverMap[152] = windowmap[7];
+    gameOverMap[153] = windowmap[8];
+    set_win_tiles(0, 0, 20, 11, gameOverMap); // Set the game over message with the score
     game_on = FALSE;
     //Restart everything to its default values
     hit = FALSE;
