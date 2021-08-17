@@ -379,15 +379,16 @@ void positionBombs(){
 
 void setupBackground(){
     set_bkg_data(37, 13, Knight_tiles);
+    if(_cpu == CGB_TYPE){
+        // switch to 2nd video memory bank
+        VBK_REG = 1;
 
-    // switch to 2nd video memory bank
-    VBK_REG = 1;
+        // Set background color palette map
+        set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN1);
 
-    // Set background color palette map
-    set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN1);
-    
-    // switch to 1st video memory bank
-    VBK_REG = 0;
+        // switch to 1st video memory bank
+        VBK_REG = 0;
+    }
 
     set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN0);
 }

@@ -25,9 +25,6 @@ void main(){
 
     fadeOut(); //Fade out effect
 
-    //Set up the background's palettes 
-    set_bkg_palette(0, 4, &backgroundPalette[0]);
-
     HIDE_BKG;
     DISPLAY_OFF;
 
@@ -44,14 +41,14 @@ void main(){
 
     if(_cpu == CGB_TYPE){
         VBK_REG = 1;
+        set_bkg_palette(0, 4, &backgroundPalette[0]); //Set up the background's palettes
         set_win_tiles(0, 0, 20, 1, windowpalette); // Set window color palette
+        set_sprite_palette(0, 6, &spritePalette[0]); //Load sprite's color palettes
         VBK_REG = 0;
     }
-    
     set_win_tiles(0, 0, 20, 1, windowmap); // Set the tiles for the window layer
     move_win(7, 132); //Bottom of the screen
     set_sprite_data(0, 64, knight_sprites);
-    set_sprite_palette(0, 6, &spritePalette[0]); //Load sprite's color palettes
     setupBackground(); // Set up the Background
     setupCharacters(); // Set up The player's and obstacle's sprites
     init(); // Initialize all the default variables needed to start the game
