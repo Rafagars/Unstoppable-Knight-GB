@@ -119,6 +119,7 @@ uint8_t randomize(uint8_t n){
 
 void gameOverScreen(){
     resetBackground();
+    SHOW_WIN;
     gbt_stop();
     turnOffSound();
     move_win(7, 0);
