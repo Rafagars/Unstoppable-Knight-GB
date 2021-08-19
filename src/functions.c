@@ -55,7 +55,7 @@ void joyHandler(){
     case J_START:
         //Pause game
         game_on = FALSE;
-        paused = !paused;
+        paused = TRUE;
         gbt_pause(0);
         turnOffSound();
         performDelay(10);
@@ -119,8 +119,6 @@ uint8_t randomize(uint8_t n){
 
 void gameOverScreen(){
     resetBackground();
-    LYC_REG = 0x16;
-    SHOW_WIN;
     gbt_stop();
     turnOffSound();
     move_win(7, 0);
