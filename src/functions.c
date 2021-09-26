@@ -55,7 +55,7 @@ void joyHandler(){
     case J_START:
         //Pause game
         game_on = FALSE;
-        paused = !paused;
+        paused = TRUE;
         gbt_pause(0);
         turnOffSound();
         performDelay(10);
@@ -119,16 +119,19 @@ uint8_t randomize(uint8_t n){
 
 void gameOverScreen(){
     resetBackground();
-    interruptLCD(); //Hide Window layer
+    SHOW_WIN;
     gbt_stop();
     turnOffSound();
-    set_bkg_data(37, 13, Knight_tiles);
+    move_win(7, 0);
     if(_cpu == CGB_TYPE){
         VBK_REG = 1;
-        set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN1);
+        set_win_tiles(0, 0, 20, 12, gameOverPalette); // Set window color palette
         VBK_REG = 0;
     }
-    set_bkg_tiles(0, 0, GameOverWidth, GameOverHeight, GameOverBGPLN0);
+    gameOverMap[171] = windowmap[6];
+    gameOverMap[172] = windowmap[7];
+    gameOverMap[173] = windowmap[8];
+    set_win_tiles(0, 0, 20, 12, gameOverMap); // Set the game over message with the score
     game_on = FALSE;
     //Restart everything to its default values
     hit = FALSE;

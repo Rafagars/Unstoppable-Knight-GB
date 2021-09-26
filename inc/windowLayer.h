@@ -9,6 +9,10 @@ extern unsigned char windowmap[];
 
 extern unsigned char windowpalette[];
 
+extern unsigned char gameOverMap[];
+
+extern unsigned char gameOverPalette[];
+
 extern void updateCoinsCounter();
 
 extern void updateHealth();

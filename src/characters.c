@@ -355,7 +355,7 @@ void setupBombs(){
 void positionBombs(){
     if(bombs.health > 0){
         bombs.y -= 4;
-        if(checkPlayerCollision(&bombs)  && !hit){
+        if(checkPlayerCollision(&bombs) && !hit){
             explosion = TRUE;
             if(!shield){
                 player.health--;
@@ -374,21 +374,21 @@ void positionBombs(){
         checkObstacles(&obstacles[0], &bombs); // We don't want bombs over the pits 
     }
     moveCharacter(&bombs, bombs.x, bombs.y);
-
 }
 
 
 void setupBackground(){
     set_bkg_data(37, 13, Knight_tiles);
+    if(_cpu == CGB_TYPE){
+        // switch to 2nd video memory bank
+        VBK_REG = 1;
 
-    // switch to 2nd video memory bank
-    VBK_REG = 1;
+        // Set background color palette map
+        set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN1);
 
-    // Set background color palette map
-    set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN1);
-    
-    // switch to 1st video memory bank
-    VBK_REG = 0;
+        // switch to 1st video memory bank
+        VBK_REG = 0;
+    }
 
     set_bkg_tiles(0, 0, ForestBGWidth, ForestBGHeight, ForestBGPLN0);
 }
